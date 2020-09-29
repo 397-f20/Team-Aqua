@@ -1,12 +1,34 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {Component} from "react";
 import { View, StyleSheet, Text, SafeAreaView, Dimensions, Image } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { WebView } from "react-native-webview";
+import { Searchbar } from "react-native-paper";
+
 
 export default function App() {
+
+	var text = '';
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const onChangeSearch = query => {
+	  setSearchQuery(query);
+		
+  }
+  
+  const onSearchButtonPress = () => {
+	  setSearchQuery("I have searched");
+  }
   return (
-    <SafeAreaView style={styles.container}>
+ 
+   <SafeAreaView style={styles.container}>
+	  <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+		style={styles.searchBar}
+		onSubmitEditing={onSearchButtonPress}
+      />
       <MapView
         style={styles.mapContainer}
         initialRegion={{
@@ -23,6 +45,10 @@ export default function App() {
         </Marker>
       </MapView>
       <StatusBar style="auto" />
+
+	   <Text>
+	  {searchQuery}
+	  </Text>
     </SafeAreaView>
   );
 }
@@ -35,7 +61,7 @@ class CustomCalloutView extends React.Component {
                   <Text style={{
                       fontWeight: "bold",
                   }}>
-                        Test
+					Test
                 </Text>
                 </View>
                 <View>
@@ -58,4 +84,11 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height * 0.8,
   },
+  searchBar: {
+	flex: 0,
+	position: 'absolute',
+	top: 20,
+	left: 0,
+	right: 0,	
+  }
 });

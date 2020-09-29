@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, SafeAreaView, Dimensions } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { StyleSheet, Text, SafeAreaView, Dimensions, View } from "react-native";
+import MapView, { Marker, Callout } from "react-native-maps";
 
 export default function App() {
   return (
@@ -14,8 +14,19 @@ export default function App() {
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
         }}
+        showUserLocation={true}
       >
-        <Marker coordinate={{ latitude: 42.035647, longitude: -87.669332 }} />
+        <Marker
+          title="Dempster Beach"
+          description="Best Sunrise Spot Evanston"
+          coordinate={{ latitude: 42.035647, longitude: -87.669332 }}
+        >
+          <Callout>
+            <View>
+              <Text>Hello World!</Text>
+            </View>
+          </Callout>
+        </Marker>
       </MapView>
       <StatusBar style="auto" />
     </SafeAreaView>

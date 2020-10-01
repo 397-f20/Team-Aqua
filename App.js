@@ -1,16 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   Text,
   SafeAreaView,
   Dimensions,
-  Image,
-  Modal,
-  TouchableHighlight,
 } from "react-native";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
@@ -21,19 +18,23 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [pinSelected, setPinSelected] = useState(0);
+  const [caller, setCaller] = useState("");
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
-  const onSearchButtonPress = () => {
-    setSearchQuery("works!");
+  const onSearchButtonPress = (query) => {
+    if (searchQuery.trim().length > 0) {
+      setCaller("search");
+      setPinSelected(searchQuery);
+      setModalVisible(true);
+    }
   };
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
         <SearchBar
-          style={styles.searchBar}
           platform="default"
           placeholder="Search"
           onChangeText={onChangeSearch}
@@ -57,10 +58,12 @@ export default function App() {
                 longitude: +pin.longitude,
               }}
               onPress={() => {
-                setModalVisible(!modalVisible);
+                setCaller("marker");
                 setPinSelected(pin.id);
+                setModalVisible(!modalVisible);
               }}
               identifier={pin.id}
+              key={pin.id}
             />
           ))}
         </MapView>
@@ -69,10 +72,10 @@ export default function App() {
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
             pinId={pinSelected}
+            caller={caller}
           />
         ) : null}
         <StatusBar style="light-content" />
-        <Text style={styles.results}>{searchQuery}</Text>
       </SafeAreaView>
     </View>
   );
@@ -112,51 +115,5 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height * 0.8,
-  },
-  mapContainerModal: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.4,
-  },
-  results: {
-    marginTop: "2%",
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    backgroundColor: "white",
-    position: "absolute",
-    bottom: 0,
-    borderRadius: 20,
-    padding: 55,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.5,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
   },
 });

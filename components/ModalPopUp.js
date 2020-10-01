@@ -10,22 +10,31 @@ import {
   Image,
 } from "react-native";
 import dummy_pins from "../dummy_pins.json";
-import WebView from "react-native-webview";
+import PinDetails from "./PinDetails";
+import PinList from "./PinList";
 
-const ModalPopUp = ({ modalVisible, setModalVisible, pinId }) => {
-  const currentPin = dummy_pins["markers"].filter(function (item) {
-    return item.id === pinId;
-  });
+const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller }) => {
+  var res = null;
+  if (caller === "marker") {
+    res = dummy_pins["markers"].filter(function (item) {
+      return item.id === pinId;
+    });
+  }
+  else if (caller === "search") {
+    res = dummy_pins["markers"].filter(function (item) {
+      return item.title.toLowerCase().includes(pinId.toLowerCase())
+      || item.description.toLowerCase().includes(pinId.toLowerCase());
+    });
+    console.log(pinId);
+    console.log(res.length);
+    console.log(res);
+  }
 
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={modalVisible}
-      //presentationStyle = {"fullScreen"}
-      onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
-      }}
     >
       <TouchableOpacity
         style={styles.container}
@@ -34,37 +43,20 @@ const ModalPopUp = ({ modalVisible, setModalVisible, pinId }) => {
           setModalVisible(false);
         }}
       />
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <WebView
-            style={styles.image}
-            source={{ uri: `${currentPin[0].uri}` }}
-          />
-          <Text style={styles.modalText}>{currentPin[0].title}</Text>
-          <Text style={styles.modalText}>{currentPin[0].description}</Text>
-        </View>
+      <View style={styles.modalView}>
+        {caller === "marker" ? <PinDetails pin={res} /> : <PinList pins={res} />}
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    width: Dimensions.get("window").width,
-    height: 400,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
   modalView: {
     backgroundColor: "white",
     position: "absolute",
     bottom: 0,
     borderRadius: 20,
-    padding: 55,
+    paddingTop: 15,
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height * 0.5,
     alignItems: "center",
@@ -76,16 +68,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    fontWeight: "bold",
-    marginTop: 15,
-    textAlign: "center",
   },
   container: {
     flex: 1,

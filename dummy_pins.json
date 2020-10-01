@@ -1,0 +1,28 @@
+{
+    "markers": [
+        {
+            "id": "1",
+            "title": "Best Sunset View1",
+            "uri": "https://media-cdn.tripadvisor.com/media/photo-s/09/0e/e7/1d/montrose-beach.jpg",
+            "latitude": "42.035647",
+            "longitude": "-87.669332",
+            "description": "Located at Dempster St"
+        },
+        {
+            "id": "2",
+            "title": "Best Sunset View2",
+            "uri": "https://facebook.github.io/react/logo-og.png",
+            "latitude": "42.0635",
+            "longitude": "-87.6743",
+            "description": "Located at Dempster St"
+        },
+        {
+            "id": "3",
+            "title": "Best Sunset View3",
+            "uri": "https://facebook.github.io/react/logo-og.png",
+            "latitude": "42.0559",
+            "longitude": "-87.6702",
+            "description": "Located at Dempster St"
+        }
+    ]
+}

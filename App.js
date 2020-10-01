@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, SafeAreaView, Dimensions, Image, Modal, Touchab
 import MapView, { Marker, Callout } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
+import ModalPopUp from "./components/ModalPopUp";
 
 
 export default function App() {
@@ -31,43 +32,17 @@ export default function App() {
           onChangeText={onChangeSearch}
           value={searchQuery}
           onSubmitEditing={onSearchButtonPress}
-          lightTheme="true"
+          lightTheme={true}
         />
-        
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        //presentationStyle = {"fullScreen"}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-
-            <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
 
       <TouchableHighlight
         style={styles.openButton}
         onPress={() => {
-          setModalVisible(true);
+          setModalVisible(!modalVisible);
         }}
       >
         <Text style={styles.textStyle}>Show Modal</Text>
       </TouchableHighlight>
-
 
         <MapView
           style={styles.mapContainer}
@@ -77,19 +52,17 @@ export default function App() {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05,
           }}
-          
+
         >
           <Marker
           coordinate={{ latitude: 42.035647, longitude: -87.669332 }}
           onPress={() => {
-            setModalVisible(true);
+            setModalVisible(!modalVisible);
           }}
-          >
-            <Callout>
-              <CustomCalloutView />
-            </Callout>
-          </Marker>
+          />
       </MapView>
+			{modalVisible? <ModalPopUp state={true}/> : null}
+
       <StatusBar style="light-content" />
 	   <Text style={styles.results}>
 	    {searchQuery}

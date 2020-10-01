@@ -2,27 +2,27 @@
     "markers": [
         {
             "id": "1",
-            "title": "Best Sunset View1",
-            "uri": "https://media-cdn.tripadvisor.com/media/photo-s/09/0e/e7/1d/montrose-beach.jpg",
+            "title": "Lee Street Beach",
+            "uri": "https://s3.amazonaws.com/medill.wordpress.offload/WP+Media+Folder+-+medill-reports-chicago/wp-content/uploads/sites/3/2020/05/Beach1.jpg",
             "latitude": "42.035647",
             "longitude": "-87.669332",
-            "description": "Located at Dempster St"
+            "description": "A beauty in winter!"
         },
         {
             "id": "2",
-            "title": "Best Sunset View2",
-            "uri": "https://facebook.github.io/react/logo-og.png",
+            "title": "Lighthouse Beach",
+            "uri": "https://i.ytimg.com/vi/KpuHCvZA_7I/maxresdefault.jpg",
             "latitude": "42.0635",
             "longitude": "-87.6743",
-            "description": "Located at Dempster St"
+            "description": "Best lighthouse beach ever!"
         },
         {
             "id": "3",
-            "title": "Best Sunset View3",
-            "uri": "https://facebook.github.io/react/logo-og.png",
+            "title": "Northwestern Lakefill",
+            "uri": "https://i.pinimg.com/originals/3b/17/41/3b17413b18a807023c02a9b674bb5756.jpg",
             "latitude": "42.0559",
             "longitude": "-87.6702",
-            "description": "Located at Dempster St"
+            "description": "Awesome place!"
         }
     ]
 }

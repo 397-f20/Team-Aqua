@@ -13,6 +13,8 @@ const firebaseConfig = {
   measurementId: "G-T6430PD5E5",
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export { firebase };

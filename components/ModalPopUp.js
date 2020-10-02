@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,33 +9,53 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import dummy_pins from "../dummy_pins.json";
+// import dummy_pins from "../dummy_pins.json";
 import PinDetails from "./PinDetails";
 import PinList from "./PinList";
+import { firebase } from "../firebase";
+
+var dummy_pins;
+firebase
+  .database()
+  .ref()
+  .once("value", function (snapShot) {
+    dummy_pins = snapShot.val();
+  });
 
 const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller }) => {
   var res = null;
+  const [pinData, setPinData] = useState({});
+
+  useEffect(() => {
+    const pins = firebase.database().ref("markers");
+    const handleData = (snap) => {
+      if (snap.val()) {
+        setPinData(snap.val());
+      }
+    };
+    pins.on("value", handleData, (error) => console.log(error));
+    return () => {
+      pins.off("value", handleData);
+    };
+  }, []);
+
+  console.log(pinData);
+
   if (caller === "marker") {
     res = dummy_pins["markers"].filter(function (item) {
       return item.id === pinId;
     });
-  }
-  else if (caller === "search") {
+  } else if (caller === "search") {
     res = dummy_pins["markers"].filter(function (item) {
-      return item.title.toLowerCase().includes(pinId.toLowerCase())
-      || item.description.toLowerCase().includes(pinId.toLowerCase());
+      return (
+        item.title.toLowerCase().includes(pinId.toLowerCase()) ||
+        item.description.toLowerCase().includes(pinId.toLowerCase())
+      );
     });
-    console.log(pinId);
-    console.log(res.length);
-    console.log(res);
   }
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-    >
+    <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <TouchableOpacity
         style={styles.container}
         activeOpacity={1}
@@ -44,7 +64,11 @@ const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller }) => {
         }}
       />
       <View style={styles.modalView}>
-        {caller === "marker" ? <PinDetails pin={res} /> : <PinList pins={res} />}
+        {caller === "marker" ? (
+          <PinDetails pin={res} />
+        ) : (
+          <PinList pins={res} />
+        )}
       </View>
     </Modal>
   );

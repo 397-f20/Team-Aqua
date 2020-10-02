@@ -12,6 +12,7 @@ const PinList = ({ pins }) => {
               style={styles.image}
               source={{ uri: `${pin.uri}` }}
               scrollEnabled={false}
+              scalesPageToFit={true}
             />
             <View style={{flex: 3}}>
               <Text style={styles.resultTitle}>{pin.title}</Text>

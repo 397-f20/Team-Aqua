@@ -13,16 +13,8 @@ const firebaseConfig = {
   measurementId: "G-T6430PD5E5",
 };
 
-var dummy_pins
-
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-  firebase.database().ref().once('value', function (snapshot)	    {
-		dummy_pins = snapshot.val();
-		console.log(dummy_pins)
-	});
-	export {dummy_pins};
-
-export default firebase ;
+export { firebase };

@@ -11,10 +11,10 @@ import MapView, { Marker } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
-import dummy_pins from "./dummy_pins.json";
+import {dummy_pins} from "./firebase";
+import Load_Markers from './components/Load_Markers';
 
 export default function App() {
-  var text = "";
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [pinSelected, setPinSelected] = useState(0);
@@ -51,21 +51,7 @@ export default function App() {
             longitudeDelta: 0.05,
           }}
         >
-          {dummy_pins["markers"].map((pin) => (
-            <Marker
-              coordinate={{
-                latitude: +pin.latitude,
-                longitude: +pin.longitude,
-              }}
-              onPress={() => {
-                setCaller("marker");
-                setPinSelected(pin.id);
-                setModalVisible(!modalVisible);
-              }}
-              identifier={pin.id}
-              key={pin.id}
-            />
-          ))}
+		<Load_Markers />
         </MapView>
         {modalVisible ? (
           <ModalPopUp

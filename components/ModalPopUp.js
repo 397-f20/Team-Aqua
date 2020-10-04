@@ -9,18 +9,19 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-// import dummy_pins from "../dummy_pins.json";
+import dummy_pins from "../dummy_pins.json";
 import PinDetails from "./PinDetails";
 import PinList from "./PinList";
 import { firebase } from "../firebase";
 
-var dummy_pins;
+/*var dummy_pins;
 firebase
   .database()
   .ref()
   .once("value", function (snapShot) {
     dummy_pins = snapShot.val();
   });
+  */
 
 const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller }) => {
   var res = null;

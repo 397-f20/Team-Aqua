@@ -12,6 +12,7 @@ import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import dummy_pins from "./dummy_pins.json";
+import UserInput from "./components/UserInput"
 
 export default function App() {
   var text = "";
@@ -36,7 +37,7 @@ export default function App() {
       <SafeAreaView>
         <SearchBar
           platform="default"
-          placeholder="Search"
+          placeholder="Look up your favourite spots..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           onSubmitEditing={onSearchButtonPress}
@@ -75,7 +76,7 @@ export default function App() {
             caller={caller}
           />
         ) : null}
-        <StatusBar style="light-content" />
+        <UserInput />
       </SafeAreaView>
     </View>
   );

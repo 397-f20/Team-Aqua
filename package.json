@@ -17,6 +17,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.0.tar.gz",
     "react-native-autoheight-webview": "^1.5.4",
     "react-native-elements": "^2.3.2",
+    "react-native-image-picker": "^2.3.4",
     "react-native-image-view": "^2.1.9",
     "react-native-maps": "0.27.1",
     "react-native-modals": "^0.19.9",
@@ -24,7 +25,8 @@
     "react-native-search-bar": "^3.5.1",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "^0.13.14",
-    "react-native-webview": "^10.7.0"
+    "react-native-webview": "^10.7.0",
+    "expo-image-picker": "~9.1.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -13,13 +13,30 @@ import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import dummy_pins from "./dummy_pins.json";
 import UserInput from "./components/UserInput"
+import {firebase} from './firebase';
 
 export default function App() {
-  var text = "";
+
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [pinSelected, setPinSelected] = useState(0);
   const [caller, setCaller] = useState("");
+  const [pinData, setPinData] = useState(dummy_pins);
+  
+  
+  useEffect(() => {
+    const pins = firebase.database().ref();
+    const handleData = (snap) => {
+      if (snap.val()) {
+        setPinData(snap.val());
+      }
+    };
+    pins.on("value", handleData, (error) => console.log(error));
+    return () => {
+      pins.off("value", handleData);
+    }; 
+  }, []);
+  console.log(pinData);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -52,7 +69,7 @@ export default function App() {
             longitudeDelta: 0.05,
           }}
         >
-          {dummy_pins["markers"].map((pin) => (
+          {pinData["markers"].map((pin) => (
             <Marker
               coordinate={{
                 latitude: +pin.latitude,
@@ -74,6 +91,7 @@ export default function App() {
             setModalVisible={setModalVisible}
             pinId={pinSelected}
             caller={caller}
+			pinData={pinData}
           />
         ) : null}
         <UserInput />

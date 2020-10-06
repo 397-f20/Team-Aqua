@@ -9,51 +9,32 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import dummy_pins from "../dummy_pins.json";
 import PinDetails from "./PinDetails";
 import PinList from "./PinList";
-import { firebase } from "../firebase";
 
-/*var dummy_pins;
-firebase
-  .database()
-  .ref()
-  .once("value", function (snapShot) {
-    dummy_pins = snapShot.val();
-  });
-  */
+// Info I got from Riesbeck about the database issue:
+// database calls should be in useEffect
+// App.js is loaded alot, while ModalPopup is loaded once
+// Make a state variable for dummy_pins
+// get pin data in App, load default data, then you load firebase data
 
-const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller }) => {
-  var res = null;
-  const [pinData, setPinData] = useState({});
 
-  useEffect(() => {
-    const pins = firebase.database().ref("markers");
-    const handleData = (snap) => {
-      if (snap.val()) {
-        setPinData(snap.val());
-      }
-    };
-    pins.on("value", handleData, (error) => console.log(error));
-    return () => {
-      pins.off("value", handleData);
-    };
-  }, []);
-
-  console.log(pinData);
-
+const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller, pinData }) => {
+  var res = null
+  
   if (caller === "marker") {
-    res = dummy_pins["markers"].filter(function (item) {
+    res = pinData["markers"].filter(function (item) {
       return item.id === pinId;
     });
   } else if (caller === "search") {
-    res = dummy_pins["markers"].filter(function (item) {
+    res = pinData["markers"].filter(function (item) {
       return (
         item.title.toLowerCase().includes(pinId.toLowerCase()) ||
         item.description.toLowerCase().includes(pinId.toLowerCase())
       );
     });
   }
+
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>

@@ -22,8 +22,8 @@ export default function App() {
   const [pinSelected, setPinSelected] = useState(0);
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
-  
-  
+
+
   useEffect(() => {
     const pins = firebase.database().ref();
     const handleData = (snap) => {
@@ -34,9 +34,8 @@ export default function App() {
     pins.on("value", handleData, (error) => console.log(error));
     return () => {
       pins.off("value", handleData);
-    }; 
+    };
   }, []);
-  console.log(pinData);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -61,6 +60,7 @@ export default function App() {
           lightTheme={true}
         />
         <MapView
+          provider="google"
           style={styles.mapContainer}
           initialRegion={{
             latitude: 42.047455,
@@ -68,6 +68,8 @@ export default function App() {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05,
           }}
+          showsUserLocation={true}
+          showsMyLocationButton={true}
         >
           {pinData["markers"].map((pin) => (
             <Marker
@@ -94,45 +96,21 @@ export default function App() {
 			pinData={pinData}
           />
         ) : null}
-        <UserInput />
+      <UserInput />
       </SafeAreaView>
     </View>
   );
 }
-
-// class CustomCalloutView extends React.Component {
-//   render() {
-//     return (
-//       <View>
-//         <View>
-//           <Text
-//             style={{
-//               fontWeight: "bold",
-//             }}
-//           >
-//             Test
-//           </Text>
-//         </View>
-//         <View>
-//           <WebView
-//             style={{ height: 100, width: 100 }}
-//             source={{ uri: "https://facebook.github.io/react/logo-og.png" }}
-//           />
-//         </View>
-//       </View>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   mapContainer: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.8,
+    height: Dimensions.get("window").height * 0.75,
   },
 });

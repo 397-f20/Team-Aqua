@@ -1,5 +1,5 @@
 {
-    "markers": [
+  "markers": [
         {
             "id": "1",
             "title": "Lee Street Beach",
@@ -7,22 +7,6 @@
             "latitude": "42.035647",
             "longitude": "-87.669332",
             "description": "A beauty in winter!"
-        },
-        {
-            "id": "2",
-            "title": "Lighthouse Beach",
-            "uri": "https://i.ytimg.com/vi/KpuHCvZA_7I/maxresdefault.jpg",
-            "latitude": "42.0635",
-            "longitude": "-87.6743",
-            "description": "Best lighthouse beach ever!"
-        },
-        {
-            "id": "3",
-            "title": "Northwestern Lakefill",
-            "uri": "https://i.pinimg.com/originals/3b/17/41/3b17413b18a807023c02a9b674bb5756.jpg",
-            "latitude": "42.0559",
-            "longitude": "-87.6702",
-            "description": "Awesome place!"
         }
     ]
 }

@@ -1,13 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 
 const PinList = ({ pins }) => {
+
   if (pins.length > 0) {
     return (
       <ScrollView style={{width: Dimensions.get("window").width}}>
         {pins.map((pin) => (
-          <View style={styles.listItem} key={pin.id}>
+          <TouchableOpacity style={styles.listItem} key={pin.id}>
             <AutoHeightWebView
               style={styles.image}
               source={{ uri: `${pin.uri}` }}
@@ -18,7 +19,7 @@ const PinList = ({ pins }) => {
               <Text style={styles.resultTitle}>{pin.title}</Text>
               <Text style={styles.resultText}>{pin.description}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))
         }
       </ScrollView>

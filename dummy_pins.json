@@ -1,12 +1,21 @@
 {
-  "markers": [
-        {
-            "id": "1",
-            "title": "Lee Street Beach",
-            "uri": "https://s3.amazonaws.com/medill.wordpress.offload/WP+Media+Folder+-+medill-reports-chicago/wp-content/uploads/sites/3/2020/05/Beach1.jpg",
-            "latitude": "42.035647",
-            "longitude": "-87.669332",
-            "description": "A beauty in winter!"
-        }
-    ]
-}
+    "markers" : {
+      "1t35326" : {
+        "description" : "Awesome place!!",
+        "id" : "1t35326",
+        "latitude" : "42.0559",
+        "longitude" : "-87.6702",
+        "title" : "Northwestern Lakefill",
+        "uri" : "https://i.pinimg.com/originals/3b/17/41/3b17413b18a807023c02a9b674bb5756.jpg"
+      },
+      "39afua900" : {
+        "description" : "World!",
+        "id" : "39afua900",
+        "latitude": "42.052126",
+        "longitude" : "-87.683015",
+        "title" : "Hello",
+        "uri" : "https://firebasestorage.googleapis.com/v0/b/thespot-77b20.appspot.com/o/post_images%2F1602096916526.jpeg?alt=media&token=8274c04d-7244-405b-aa79-0c7dac49fae6"
+      }
+    }
+  }
+  

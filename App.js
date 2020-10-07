@@ -1,41 +1,34 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Dimensions,
-} from "react-native";
+import { View, StyleSheet, Text, SafeAreaView, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import dummy_pins from "./dummy_pins.json";
-import UserInput from "./components/UserInput"
-import {firebase} from './firebase';
+import UserInput from "./components/UserInput";
+import { firebase } from "./firebase";
 
 export default function App() {
-
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
-  const [pinSelected, setPinSelected] = useState(0);
+  const [pinSelected, setPinSelected] = useState("");
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
 
-
-  useEffect(() => {
-    const pins = firebase.database().ref();
-    const handleData = (snap) => {
-      if (snap.val()) {
-        setPinData(snap.val());
-      }
-    };
-    pins.on("value", handleData, (error) => console.log(error));
-    return () => {
-      pins.off("value", handleData);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const pins = firebase.database().ref();
+  //   const handleData = (snap) => {
+  //     if (snap.val()) {
+  //       setPinData(snap.val());
+  //       console.log("Snap: ", snap.val());
+  //     }
+  //   };
+  //   pins.on("value", handleData, (error) => console.log(error));
+  //   return () => {
+  //     pins.off("value", handleData);
+  //   };
+  // }, []);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -47,6 +40,12 @@ export default function App() {
       setModalVisible(true);
     }
   };
+
+  console.log("Markers: ", pinData.markers);
+  Object.keys(pinData.markers).map((pin, i) => {
+    console.log("Lat: ", pinData.markers[pin].latitude);
+    console.log("I :", i);
+  });
 
   return (
     <View style={styles.container}>
@@ -71,7 +70,7 @@ export default function App() {
           showsUserLocation={true}
           showsMyLocationButton={true}
         >
-          {pinData["markers"].map((pin) => (
+          {/* {pinData.markers.map((pin) => (
             <Marker
               coordinate={{
                 latitude: +pin.latitude,
@@ -85,6 +84,21 @@ export default function App() {
               identifier={pin.id}
               key={pin.id}
             />
+          ))} */}
+          {Object.keys(pinData.markers).map((pin, i) => (
+            <Marker
+              coordinate={{
+                latitude: +pinData.markers.pin.latitude,
+                longitude: +pinData.markers.pin.longitude,
+              }}
+              onPress={() => {
+                setCaller("marker");
+                setPinSelected(pin);
+                setModalVisible(!modalVisible);
+              }}
+              identifier={pin}
+              key={i}
+            />
           ))}
         </MapView>
         {modalVisible ? (
@@ -93,10 +107,10 @@ export default function App() {
             setModalVisible={setModalVisible}
             pinId={pinSelected}
             caller={caller}
-			pinData={pinData}
+            pinData={pinData}
           />
         ) : null}
-      <UserInput />
+        <UserInput />
       </SafeAreaView>
     </View>
   );

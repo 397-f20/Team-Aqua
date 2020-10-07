@@ -16,19 +16,19 @@ export default function App() {
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
 
-  // useEffect(() => {
-  //   const pins = firebase.database().ref();
-  //   const handleData = (snap) => {
-  //     if (snap.val()) {
-  //       setPinData(snap.val());
-  //       console.log("Snap: ", snap.val());
-  //     }
-  //   };
-  //   pins.on("value", handleData, (error) => console.log(error));
-  //   return () => {
-  //     pins.off("value", handleData);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const pins = firebase.database().ref();
+    const handleData = (snap) => {
+      if (snap.val()) {
+        setPinData(snap.val());
+        console.log("Snap: ", snap.val());
+      }
+    };
+    pins.on("value", handleData, (error) => console.log(error));
+    return () => {
+      pins.off("value", handleData);
+    };
+  }, []);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -42,10 +42,10 @@ export default function App() {
   };
 
   console.log("Markers: ", pinData.markers);
-  Object.keys(pinData.markers).map((pin, i) => {
-    console.log("Lat: ", pinData.markers[pin].latitude);
-    console.log("I :", i);
-  });
+  // Object.keys(pinData.markers).map((pin, i) => {
+  //   console.log("Lat: ", pinData.markers[pin].latitude);
+  //   console.log("I :", i);
+  // });
 
   return (
     <View style={styles.container}>
@@ -88,8 +88,8 @@ export default function App() {
           {Object.keys(pinData.markers).map((pin, i) => (
             <Marker
               coordinate={{
-                latitude: +pinData.markers.pin.latitude,
-                longitude: +pinData.markers.pin.longitude,
+                latitude: +pinData.markers[pin].latitude,
+                longitude: +pinData.markers[pin].longitude,
               }}
               onPress={() => {
                 setCaller("marker");

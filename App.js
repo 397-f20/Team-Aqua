@@ -12,7 +12,7 @@ import { firebase } from "./firebase";
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
-  const [pinSelected, setPinSelected] = useState("");
+  const [pinSelected, setPinSelected] = useState(null);
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
 
@@ -21,7 +21,6 @@ export default function App() {
     const handleData = (snap) => {
       if (snap.val()) {
         setPinData(snap.val());
-        console.log("Snap: ", snap.val());
       }
     };
     pins.on("value", handleData, (error) => console.log(error));
@@ -40,12 +39,6 @@ export default function App() {
       setModalVisible(true);
     }
   };
-
-  console.log("Markers: ", pinData.markers);
-  // Object.keys(pinData.markers).map((pin, i) => {
-  //   console.log("Lat: ", pinData.markers[pin].latitude);
-  //   console.log("I :", i);
-  // });
 
   return (
     <View style={styles.container}>
@@ -93,7 +86,7 @@ export default function App() {
               }}
               onPress={() => {
                 setCaller("marker");
-                setPinSelected(pin);
+                setPinSelected({pin});
                 setModalVisible(!modalVisible);
               }}
               identifier={pin}
@@ -105,7 +98,7 @@ export default function App() {
           <ModalPopUp
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
-            pinId={pinSelected}
+            pin={pinSelected}
             caller={caller}
             pinData={pinData}
           />

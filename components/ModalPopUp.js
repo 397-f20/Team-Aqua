@@ -19,20 +19,23 @@ import PinList from "./PinList";
 // get pin data in App, load default data, then you load firebase data
 
 
-const ModalPopUp = ({ modalVisible, setModalVisible, pinId, caller, pinData }) => {
-  var res = null
-  
+const ModalPopUp = ({ modalVisible, setModalVisible, pin, caller, pinData }) => {
+  var res = null;
+
   if (caller === "marker") {
-    res = pinData["markers"].filter(function (item) {
-      return item.id === pinId;
-    });
+    for (item in pinData["markers"]) {
+      if (item === pin["pin"]) {
+        res = pinData["markers"][item];
+      }
+    }
   } else if (caller === "search") {
-    res = pinData["markers"].filter(function (item) {
-      return (
-        item.title.toLowerCase().includes(pinId.toLowerCase()) ||
-        item.description.toLowerCase().includes(pinId.toLowerCase())
-      );
-    });
+    res = [];
+    for (item in pinData["markers"]) {
+      if (pinData["markers"][item]["title"].toLowerCase().includes(pin.toLowerCase()) ||
+          pinData["markers"][item]["description"].toLowerCase().includes(pin.toLowerCase())) {
+            res.push(pinData["markers"][item]);
+          }
+    }
   }
 
 

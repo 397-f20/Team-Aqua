@@ -13,13 +13,13 @@ const PinDetails = ({ pin }) => {
     >
       <AutoHeightWebView
         style={styles.image}
-        source={{ uri: `${pin[0].uri}` }}
+        source={{ uri: `${pin["uri"]}` }}
         scrollEnabled={false}
         scalesPageToFit={true}
       />
       </TouchableOpacity>
-      <Text style={styles.resultTitle}>{pin[0].title}</Text>
-      <Text style={styles.resultText}>{pin[0].description}</Text>
+      <Text style={styles.resultTitle}>{pin["title"]}</Text>
+      <Text style={styles.resultText}>{pin["description"]}</Text>
     </ScrollView>
   );
 };

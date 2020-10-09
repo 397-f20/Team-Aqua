@@ -1,34 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
+import SelectImage from "./SelectImage";
 import {
   StyleSheet,
   Dimensions,
   View,
-  Modal,
   Text,
   Image,
   TouchableOpacity,
   PermissionsAndroid,
   Platform,
+  Button
 } from "react-native";
 import * as Location from "expo-location";
 import { firebase } from "../firebase";
+import { Ionicons } from "@expo/vector-icons";
+import Modal from 'react-native-modal';
 
 const UserInput = () => {
-  const [image, setImage] = useState(null);
   const [location, setLocation] = useState(null);
   const [uploading, setUpoading] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const {
-          status,
-        } = await ImagePicker.requestCameraRollPermissionsAsync();
-      }
-    })();
-  }, []);
+  const [formVisible, setFormVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -37,6 +28,7 @@ const UserInput = () => {
         console.log("user is dumb");
       }
       let location = await Location.getCurrentPositionAsync({});
+      console.log(location);
       setLocation(location);
     })();
   }, []);
@@ -65,79 +57,68 @@ const UserInput = () => {
     return `${Math.random().toString(36).substr(2, 9)}`;
   };
 
-  const handleSubmit = async (id, lat, long, uri) => {
-    const pin = {
-      description: "world",
-      title: "hello",
-      id: id,
-      latitude: `${lat}`,
-      longitude: `${long}`,
-      uri: uri,
+  const ImageForm = ({ formVisible, setFormVisible }) => {
+    // const task = firebase.storage().ref("Hello").putFile(image);
+    // console.log(remoteUri);
+    const [image, setImage] = useState(null);
+    const handleSubmit = async () => {
+      const remoteUri = await uploadPhotoAsync(image);
+      const id = generateUniqueId();
+      const lat = Math.round(location["coords"].latitude * 1000000) / 1000000;
+      const long = Math.round(location["coords"].longitude * 1000000) / 1000000;
+      const pin = {
+        description: "world",
+        title: "hello",
+        id: id,
+        latitude: `${lat}`,
+        longitude: `${long}`,
+        uri: remoteUri,
+      };
+  
+      firebase
+        .database()
+        .ref("markers")
+        .push(pin, (error) => { error ? console.log('Error has occured during uploading this pin') : setFormVisible(false); })
+        .catch((error) => {
+          console.log(error);
+        });
     };
 
-    // firebase
-    //   .database()
-    //   .ref("markers")
-    //   .child(id)
-    //   .set(pin)
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    // var newKey = firebase.database().ref().child("markers").push().key;
-
-    // firebase
-    //   .database()
-    //   .ref("markers/" + newKey)
-    //   .set(pin)
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    firebase
-      .database()
-      .ref("markers")
-      .push(pin)
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    setImage(result.uri);
-
-    const remoteUri = await uploadPhotoAsync(image);
-
-    // const task = firebase.storage().ref("Hello").putFile(image);
-
-    // console.log(remoteUri);
-
-    const id = generateUniqueId();
-    const lat = Math.round(location["coords"].latitude * 1000000) / 1000000;
-    const long = Math.round(location["coords"].longitude * 1000000) / 1000000;
-
-    handleSubmit(id, lat, long, remoteUri);
+    return (
+        <Modal isVisible={false}>
+          <View style={styles.form}>
+            <Text>Upload Images</Text>
+            <Text>Longitude</Text>
+            <Text>Latitude</Text>
+            <SelectImage image = {image} setImage = {setImage}/>
+            <Button
+            onPress={() => handleSubmit()}
+            title="Upload"
+            color="#841584"
+            />
+          </View>
+        </Modal>
+    );
   };
 
   return (
     <View style={styles.bottomMenu}>
+      {formVisible ? (
+          <ImageForm
+            formVisible={formVisible}
+            setformVisible={setFormVisible}
+          />
+        ) : null}
       <TouchableOpacity
-        onPress={pickImage}
+        onPress={() => setFormVisible(true)}
         style={{ flex: 1, alignItems: "center" }}
       >
-        <Ionicons
-          name="ios-add"
-          size={45}
-          color="black"
-          title="Pick an image from camera roll"
-        />
+      <Ionicons
+        name="ios-add"
+        size={45}
+        color="black"
+        title="Open image form"
+      />
         <Text>Add a Spot</Text>
       </TouchableOpacity>
     </View>
@@ -149,6 +130,10 @@ styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  form:{
+    flex: 1,
+    backgroundColor: "white",
+  }
 });
 
 export default UserInput;

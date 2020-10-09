@@ -85,7 +85,7 @@ const UserInput = () => {
     };
 
     return (
-        <Modal isVisible={false}>
+        <Modal isVisible={formVisible}>
           <View style={styles.form}>
             <Text>Upload Images</Text>
             <Text>Longitude</Text>

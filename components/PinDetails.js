@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ScrollView, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import ImageView from 'react-native-image-view';
+import Directions from './Directions';
 
 const PinDetails = ({ pin }) => {
   const [imageVisible, setImageVisible] = useState(false);
@@ -20,6 +21,7 @@ const PinDetails = ({ pin }) => {
       </TouchableOpacity>
       <Text style={styles.resultTitle}>{pin["title"]}</Text>
       <Text style={styles.resultText}>{pin["description"]}</Text>
+      <Directions  lat = {+pin["latitude"]} long = {+pin["longitude"]} />
     </ScrollView>
   );
 };

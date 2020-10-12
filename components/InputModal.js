@@ -7,10 +7,12 @@ import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
 
-const InputModal = ({ formVisible, setFormVisible, location }) => {
+const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbuttonState }) => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
 
+  console.log("1")
+  console.log(buttonState)
   const validationSchema = yup.object().shape({
     title: yup.string().required().label("Title"),
     description: yup
@@ -45,6 +47,9 @@ const InputModal = ({ formVisible, setFormVisible, location }) => {
   };
 
   const handleSubmit = async (values) => {
+    setFormVisible(false);
+    console.log("2")
+    console.log(buttonState)
     const { title, description } = values;
     const remoteUri = await uploadPhotoAsync(image);
     const id = generateUniqueId();
@@ -95,7 +100,7 @@ const InputModal = ({ formVisible, setFormVisible, location }) => {
               leftIcon="subtitles"
               placeholder="How would you describe this Spot?"
             />
-            <Form.Button color="black" title={"Add the Spot"} />
+            <Form.Button color="black" title={"Add the Spot"} disabled={buttonState} />
             {<Form.ErrorMessage error={error} visible={true} />}
           </Form>
         </View>

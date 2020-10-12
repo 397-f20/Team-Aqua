@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Image, SafeAreaView, Platform } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
-import { OpenMapDirections } from 'react-native-navigation-directions';
+import { OpenMapDirections } from "react-native-navigation-directions";
 
 const Directions = ({lat, long}) => {
 

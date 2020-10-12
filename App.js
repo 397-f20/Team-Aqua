@@ -15,7 +15,7 @@ export default function App() {
   const [pinSelected, setPinSelected] = useState(null);
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
-
+ 
   useEffect(() => {
     const pins = firebase.database().ref();
     const handleData = (snap) => {

@@ -9,7 +9,7 @@ const UserInput = () => {
   const [location, setLocation] = useState(null);
   const [uploading, setUpoading] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
-
+ 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();

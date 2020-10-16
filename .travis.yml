@@ -8,3 +8,7 @@ script:
   - npm install --global expo-cli
   - npm test
   - npm run build
+
+after-success:
+  - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+  - npx expo publish --non-interactive

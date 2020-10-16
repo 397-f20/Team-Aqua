@@ -7,7 +7,6 @@ cache:
 script:
   - npm install --global expo-cli
   - npm test
-  - npm run build
 after-success:
   - npx expo login -u $expo_username -p $expo_password
   - npx expo publish --non-interactive

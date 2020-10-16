@@ -5,8 +5,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
-  },
+    "eject": "expo eject",
+    "build": "expo build:ios"
+    },
   "dependencies": {
     "@react-native-community/geolocation": "1.4.2",
     "expo": "^39.0.3",

@@ -5,10 +5,11 @@ import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 
-const UserInput = () => {
+const UserInput = ({region, choosePin, setChoosePin}) => {
   const [location, setLocation] = useState(null);
   const [uploading, setUpoading] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
+  const [progress, setProgress] = useState(null);
  
   useEffect(() => {
     (async () => {
@@ -22,6 +23,22 @@ const UserInput = () => {
     })();
   }, []);
 
+  const userChooseLocation = (region) => {
+    var lat = region.latitude;
+    var lon = region.longitude;
+    var loc = {
+      "coords": {
+        "latitude" : lat,
+        "longitude" : lon,
+      }
+    }
+    setLocation(loc)
+  };
+
+  const meowmeow = (region) => {
+    console.log(region)
+  }
+
   return (
     <View style={styles.bottomMenu}>
       {formVisible ? (
@@ -29,20 +46,40 @@ const UserInput = () => {
           formVisible={formVisible}
           setFormVisible={setFormVisible}
           location={location}
+          progress={progress}
+          region = {region}
+          choosePin = {choosePin}
+          setChoosePin = {setChoosePin}
         />
       ) : null}
-      <TouchableOpacity
-        onPress={() => setFormVisible(true)}
+      { !choosePin ?
+      (<TouchableOpacity
+        onPress={() => setFormVisible(true) && setProgress("editing")}
         style={{ flex: 1, alignItems: "center" }}
       >
+      <Ionicons
+        name="ios-add"
+        size={45}
+        color="black"
+        title="Open image form"
+      />
+      <Text>Add a Spot</Text>
+      </TouchableOpacity>):null
+      }
+      { choosePin ?
+        (<TouchableOpacity
+          onPress={() => { setChoosePin(false); setFormVisible(true); userChooseLocation(region); meowmeow(region)}}
+          style={{ flex: 1, alignItems: "center" }}
+        >
         <Ionicons
           name="ios-add"
           size={45}
-          color="black"
+          color="green"
           title="Open image form"
         />
-        <Text>Add a Spot</Text>
-      </TouchableOpacity>
+        <Text>Set Pin Location</Text>
+        </TouchableOpacity>):null
+        }
     </View>
   );
 };

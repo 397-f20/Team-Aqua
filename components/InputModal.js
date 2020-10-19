@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import SelectImage from "./SelectImage";
-import { StyleSheet, SafeAreaView, View, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, SafeAreaView, View, TouchableOpacity, Button, buttonState, Dimensions } from "react-native";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
+import marker  from '../assets/icons8-marker.png';
 
-const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbuttonState }) => {
+const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, setChoosePin}) => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
 
-  console.log("1")
-  console.log(buttonState)
   const validationSchema = yup.object().shape({
     title: yup.string().required().label("Title"),
     description: yup
@@ -63,6 +62,7 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
       longitude: `${long}`,
       uri: remoteUri,
     };
+    console.log(pin)
 
     firebase
       .database()
@@ -77,6 +77,7 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
         console.log(error);
       });
   };
+
   return (
     <SafeAreaView style={styles.form}>
       <Modal isVisible={formVisible} avoidKeyboard={true}>
@@ -85,6 +86,13 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
             <Ionicons name="ios-close" size={45} color="white" />
           </TouchableOpacity>
           <SelectImage image={image} setImage={setImage} />
+          <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
+            <Button
+              color="green"
+              title="Add Pin"
+              onPress = { () => setChoosePin(true) & setFormVisible(false)  }
+            />
+          </SafeAreaView>
           <Form
             initialValues={{ title: "", description: "" }}
             validationSchema={validationSchema}
@@ -105,7 +113,9 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
           </Form>
         </View>
       </Modal>
+      
     </SafeAreaView>
+    
   );
 };
 
@@ -113,6 +123,11 @@ styles = StyleSheet.create({
   form: {
     flex: 1,
     backgroundColor: "white",
+  },
+  markerFixed: {
+    left: Dimensions.get("window").width * 0.5-64,
+    position: 'absolute',
+    top: Dimensions.get("window").height * 0.5-124,
   },
 });
 

@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import SelectImage from "./SelectImage";
-import { StyleSheet, SafeAreaView, View, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, SafeAreaView, View, TouchableOpacity, Button, buttonState } from "react-native";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
+import marker  from '../assets/icons8-marker.png';
 
-const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbuttonState }) => {
+
+const InputModal = ({ formVisible, setFormVisible, location, region, setRegion}) => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
+  const [pin, setPin] = useState(false);
 
-  console.log("1")
-  console.log(buttonState)
   const validationSchema = yup.object().shape({
     title: yup.string().required().label("Title"),
     description: yup
@@ -77,6 +78,7 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
         console.log(error);
       });
   };
+
   return (
     <SafeAreaView style={styles.form}>
       <Modal isVisible={formVisible} avoidKeyboard={true}>
@@ -85,6 +87,17 @@ const InputModal = ({ formVisible, setFormVisible, location, buttonState, setbut
             <Ionicons name="ios-close" size={45} color="white" />
           </TouchableOpacity>
           <SelectImage image={image} setImage={setImage} />
+          <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
+            <Button
+              color="green"
+              title="Add Pin"
+              onPress = { () => setFormVisible(false) && setPin(true)}
+            />
+            {pin && 
+            (<View style={styles.markerFixed}>
+              <Image style={styles.marker} source={marker} />
+            </View>)}
+          </SafeAreaView>
           <Form
             initialValues={{ title: "", description: "" }}
             validationSchema={validationSchema}
@@ -113,6 +126,11 @@ styles = StyleSheet.create({
   form: {
     flex: 1,
     backgroundColor: "white",
+  },
+  markerFixed: {
+    left: '50%',
+    position: 'absolute',
+    top: '50%'
   },
 });
 

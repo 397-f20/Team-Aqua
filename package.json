@@ -5,7 +5,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+<<<<<<< Updated upstream
     "eject": "expo eject"
+=======
+    "eject": "expo eject",
+    "build": "expo build:ios",
+    "test": "test --passWithNoTests"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "@react-native-community/geolocation": "1.4.2",

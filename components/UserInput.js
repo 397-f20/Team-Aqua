@@ -5,10 +5,11 @@ import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 
-const UserInput = () => {
+const UserInput = ({region, setRegion}) => {
   const [location, setLocation] = useState(null);
   const [uploading, setUpoading] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
+  const [progress, setProgress] = useState(null);
  
   useEffect(() => {
     (async () => {
@@ -29,19 +30,22 @@ const UserInput = () => {
           formVisible={formVisible}
           setFormVisible={setFormVisible}
           location={location}
+          progress={progress}
+          region = {region}
+          setRegion = {setRegion}
         />
       ) : null}
       <TouchableOpacity
-        onPress={() => setFormVisible(true)}
+        onPress={() => setFormVisible(true) && setProgress("editing")}
         style={{ flex: 1, alignItems: "center" }}
       >
-        <Ionicons
-          name="ios-add"
-          size={45}
-          color="black"
-          title="Open image form"
-        />
-        <Text>Add a Spot</Text>
+      <Ionicons
+        name="ios-add"
+        size={45}
+        color="black"
+        title="Open image form"
+      />
+      <Text>Add a Spot</Text>
       </TouchableOpacity>
     </View>
   );

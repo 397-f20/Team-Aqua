@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, SafeAreaView, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import { WebView } from "react-native-webview";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import dummy_pins from "./dummy_pins.json";
@@ -15,6 +13,12 @@ export default function App() {
   const [pinSelected, setPinSelected] = useState(null);
   const [caller, setCaller] = useState("");
   const [pinData, setPinData] = useState(dummy_pins);
+  const [region, setRegion] = useState({
+    latitude: 42.047455,
+    longitude: -87.680657,
+    latitudeDelta: 0.05,
+    longitudeDelta: 0.05,
+  });
  
   useEffect(() => {
     const pins = firebase.database().ref();
@@ -54,45 +58,26 @@ export default function App() {
         <MapView
           provider="google"
           style={styles.mapContainer}
-          initialRegion={{
-            latitude: 42.047455,
-            longitude: -87.680657,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          }}
+          initialRegion={region}
           showsUserLocation={true}
           showsMyLocationButton={true}
+          onRegionChangeComplete={setRegion}
         >
-          {/* {pinData.markers.map((pin) => (
-            <Marker
-              coordinate={{
-                latitude: +pin.latitude,
-                longitude: +pin.longitude,
-              }}
-              onPress={() => {
-                setCaller("marker");
-                setPinSelected(pin.id);
-                setModalVisible(!modalVisible);
-              }}
-              identifier={pin.id}
-              key={pin.id}
-            />
-          ))} */}
-          {Object.keys(pinData.markers).map((pin, i) => (
-            <Marker
-              coordinate={{
-                latitude: +pinData.markers[pin].latitude,
-                longitude: +pinData.markers[pin].longitude,
-              }}
-              onPress={() => {
-                setCaller("marker");
-                setPinSelected({pin});
-                setModalVisible(!modalVisible);
-              }}
-              identifier={pin}
-              key={i}
-            />
-          ))}
+        {Object.keys(pinData.markers).map((pin, i) => (
+          <Marker
+            coordinate={{
+              latitude: +pinData.markers[pin].latitude,
+              longitude: +pinData.markers[pin].longitude,
+            }}
+            onPress={() => {
+              setCaller("marker");
+              setPinSelected({pin});
+              setModalVisible(!modalVisible);
+            }}
+            identifier={pin}
+            key={i}
+          />
+        ))}
         </MapView>
         {modalVisible ? (
           <ModalPopUp
@@ -103,7 +88,7 @@ export default function App() {
             pinData={pinData}
           />
         ) : null}
-        <UserInput />
+        <UserInput region = {region} setRegion = {setRegion}/>
       </SafeAreaView>
     </View>
   );

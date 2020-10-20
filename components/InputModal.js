@@ -94,10 +94,17 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
             />
           </SafeAreaView>
           <Form
-            initialValues={{ title: "", description: "" }}
+            initialValues={{ title: "", description: ""}}
             validationSchema={validationSchema}
-            onSubmit={(values) => handleSubmit(values)}
-          >
+            onSubmit={(values) => {
+                                    if(image){
+                                      handleSubmit(values);
+                                    }
+                                    else{
+                                      alert("no image");
+                                    }
+                                  }
+                                }>
             <Form.Field
               name="title"
               leftIcon="map-search"

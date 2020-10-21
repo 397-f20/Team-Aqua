@@ -1,1 +1,1 @@
-The Spot App built with react native!
+# The Spot App built with react native!

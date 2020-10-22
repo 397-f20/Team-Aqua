@@ -7,8 +7,15 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "build": "expo build:ios",
-    "test": "test --passWithNoTests"
-    },
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
+    "collectCoverage": true
+  },
   "dependencies": {
     "@react-native-community/geolocation": "1.4.2",
     "expo": "^39.0.3",
@@ -32,13 +39,16 @@
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^4.2.0",
     "react-native-search-bar": "^3.5.1",
+    "react-native-testing-library": "^6.0.0",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "^0.13.18",
     "react-native-webview": "^10.7.0",
     "yup": "^0.29.3"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "jest-expo": "^39.0.0",
+    "react-test-renderer": "^17.0.0"
   },
   "private": true
 }

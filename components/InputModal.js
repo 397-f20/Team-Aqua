@@ -82,7 +82,7 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
     <SafeAreaView style={styles.form}>
       <Modal isVisible={formVisible} avoidKeyboard={true}>
         <View>
-          <TouchableOpacity onPress={() => setFormVisible(false)}>
+          <TouchableOpacity testID='close' onPress={() => setFormVisible(false)}>
             <Ionicons name="ios-close" size={45} color="white" />
           </TouchableOpacity>
           <SelectImage image={image} setImage={setImage} />
@@ -120,9 +120,9 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
           </Form>
         </View>
       </Modal>
-      
+
     </SafeAreaView>
-    
+
   );
 };
 

@@ -7,6 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "build": "expo build:ios",
+    "predeploy": "expo build:web",
+    "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
     "test": "jest"
   },
   "jest": {
@@ -51,5 +53,4 @@
     "react-test-renderer": "^17.0.0"
   },
   "private": true
-  
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image, View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+//import MapView, { Marker, PROVIDER_GOOGLE, MAP_TYPES } from "react-native-maps";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import WebView from 'react-native-webview';

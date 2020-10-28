@@ -84,7 +84,7 @@ const UserInput = ({region, choosePin, setChoosePin}) => {
   );
 };
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   bottomMenu: {
     flex: 1,
     alignItems: "center",

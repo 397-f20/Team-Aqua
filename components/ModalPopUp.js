@@ -21,7 +21,9 @@ import PinList from "./PinList";
 
 const ModalPopUp = ({ modalVisible, setModalVisible, pin, caller, pinData }) => {
   var res = null;
+  var item = null;
 
+  console.log(pinData["markers"])
   if (caller === "marker") {
     for (item in pinData["markers"]) {
       if (item === pin["pin"]) {

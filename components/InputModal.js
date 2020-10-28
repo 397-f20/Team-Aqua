@@ -126,7 +126,7 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
   );
 };
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   form: {
     flex: 1,
     backgroundColor: "white",

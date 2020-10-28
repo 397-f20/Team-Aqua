@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { Image, View, TouchableOpacity, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { Ionicons } from "@expo/vector-icons";
 import PinDetails from './PinDetails';
@@ -13,12 +13,7 @@ const PinList = ({ pins }) => {
         <ScrollView style={{width: Dimensions.get("window").width}}>
           {pins.map((pin) => (
             <TouchableOpacity style={styles.listItem} key={pin.id} onPress={() => {setPinSelected(pin); setListActive(false);}}>
-              <AutoHeightWebView
-                style={styles.image}
-                source={{ uri: `${pin["uri"]}` }}
-                scrollEnabled={false}
-                scalesPageToFit={true}
-              />
+            <Image style={styles.image} source={{ uri: `${pin["uri"]}` }} />
               <View style={{flex: 3}}>
                 <Text style={styles.resultTitle}>{pin["title"]}</Text>
                 <Text style={styles.resultText}>{pin["description"]}</Text>

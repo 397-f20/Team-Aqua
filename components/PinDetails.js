@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { Image, ScrollView, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import ImageView from 'react-native-image-view';
 import Directions from './Directions';
@@ -12,12 +12,7 @@ const PinDetails = ({ pin }) => {
     onPress={() => {
     }}
     >
-      <AutoHeightWebView
-        style={styles.image}
-        source={{ uri: `${pin["uri"]}` }}
-        scrollEnabled={false}
-        scalesPageToFit={true}
-      />
+      <Image style={styles.image} source={{ uri: `${pin["uri"]}` }} />
       </TouchableOpacity>
       <Text style={styles.resultTitle}>{pin["title"]}</Text>
       <Text style={styles.resultText}>{pin["description"]}</Text>

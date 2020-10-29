@@ -24,7 +24,7 @@ export default function App() {
     latitudeDelta: 0.05,
     longitudeDelta: 0.05,
   });
- 
+
   useEffect(() => {
     const pins = firebase.database().ref();
     const handleData = (snap) => {
@@ -133,4 +133,3 @@ const styles = StyleSheet.create({
     top: Dimensions.get("window").height * 0.5-124,
   },
 });
-

@@ -7,10 +7,9 @@ import InputModal from "./InputModal";
 
 const UserInput = ({region, choosePin, setChoosePin}) => {
   const [location, setLocation] = useState(null);
-  const [uploading, setUpoading] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
   const [progress, setProgress] = useState(null);
- 
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
@@ -40,7 +39,7 @@ const UserInput = ({region, choosePin, setChoosePin}) => {
   }
 
   return (
-    <View style={styles.bottomMenu}>
+    <View>
       {formVisible ? (
         <InputModal
           formVisible={formVisible}
@@ -52,42 +51,41 @@ const UserInput = ({region, choosePin, setChoosePin}) => {
           setChoosePin = {setChoosePin}
         />
       ) : null}
-      { !choosePin ?
-      (<TouchableOpacity
-        onPress={() => setFormVisible(true) && setProgress("editing")}
-        style={{ flex: 1, alignItems: "center" }}
-      >
-      <Ionicons
-        name="ios-add"
-        size={45}
-        color="black"
-        title="Open image form"
-      />
-      <Text>Add a Spot</Text>
-      </TouchableOpacity>):null
-      }
-      { choosePin ?
-        (<TouchableOpacity
+      <View style={styles.bottomMenu}>
+        {!choosePin ?
+        (
+        <TouchableOpacity
+          onPress={() => setFormVisible(true) && setProgress("editing")}
+          style={{ flex: 1, alignItems: "center" }}>
+          <Ionicons name="ios-add" size={45} color="green"/>
+          <Text style={{color:"green"}}>Add a Spot</Text>
+        </TouchableOpacity>) :
+        (
+        <React.Fragment>
+        <TouchableOpacity testID='close'
+          onPress={() => { setChoosePin(false); setFormVisible(true);}}
+          style={{flex: 1, alignItems: "center" }}>
+          <Ionicons name="ios-close" size={45} color="black" />
+          <Text style={{color:"black"}}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => { setChoosePin(false); setFormVisible(true); userChooseLocation(region); meowmeow(region)}}
-          style={{ flex: 1, alignItems: "center" }}
-        >
-        <Ionicons
-          name="ios-add"
-          size={45}
-          color="green"
-          title="Open image form"
-        />
-        <Text>Set Pin Location</Text>
-        </TouchableOpacity>):null
+          style={{ flex: 1, alignItems: "center" }}>
+          <Ionicons name="ios-checkmark" size={45} color="green" />
+          <Text style={{color:"green"}}>Confirm Location</Text>
+      </TouchableOpacity>
+      </React.Fragment>)
         }
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   bottomMenu: {
-    flex: 1,
-    alignItems: "center",
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center"
   },
 });
 

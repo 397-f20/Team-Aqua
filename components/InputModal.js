@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SelectImage from "./SelectImage";
-import { Image, StyleSheet, SafeAreaView, View, TouchableOpacity, Button, buttonState, Dimensions } from "react-native";
+import { Image, StyleSheet, SafeAreaView, View, Text, TouchableOpacity, buttonState, Dimensions } from "react-native";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
@@ -10,6 +10,7 @@ import marker  from '../assets/icons8-marker.png';
 
 const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, setChoosePin}) => {
   const [image, setImage] = useState(null);
+  const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
 
   const validationSchema = yup.object().shape({
@@ -79,20 +80,13 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
   };
 
   return (
-    <SafeAreaView style={styles.form}>
+    <SafeAreaView>
       <Modal isVisible={formVisible} avoidKeyboard={true}>
         <View>
           <TouchableOpacity testID='close' onPress={() => setFormVisible(false)}>
             <Ionicons name="ios-close" size={45} color="white" />
           </TouchableOpacity>
-          <SelectImage image={image} setImage={setImage} />
-          <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
-            <Button
-              color="green"
-              title="Add Pin"
-              onPress = { () => setChoosePin(true) & setFormVisible(false)  }
-            />
-          </SafeAreaView>
+
           <Form
             initialValues={{ title: "", description: ""}}
             validationSchema={validationSchema}
@@ -101,21 +95,34 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
                                       handleSubmit(values);
                                     }
                                     else{
-                                      alert("no image");
+                                      setImageError(true);
                                     }
                                   }
-                                }>
+                      }
+          >
+            <SelectImage image={image} setImage={setImage} />
+            {imageError ? <Text style={{fontSize: 16, marginTop: 5, color:'#fc5c65', fontWeight: 'bold', textAlign: 'center'}}>
+                          Image is required</Text> : null}
             <Form.Field
               name="title"
               leftIcon="map-search"
-              placeholder="Name of the Spot"
+              placeholder="Spot Name"
             />
             <Form.Field
               name="description"
               leftIcon="subtitles"
-              placeholder="How would you describe this Spot?"
+              placeholder="Description"
             />
-            <Form.Button color="black" title={"Add the Spot"} disabled={buttonState} />
+
+            <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress = { () => setChoosePin(true) & setFormVisible(false)  }>
+                <Text style={{color: "white"}}>Set Location</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+
+            <Form.Button color="black" title={"Add Your Spot"} disabled={buttonState} />
             {<Form.ErrorMessage error={error} visible={true} />}
           </Form>
         </View>
@@ -127,15 +134,11 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
 };
 
 const styles = StyleSheet.create({
-  form: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  markerFixed: {
-    left: Dimensions.get("window").width * 0.5-64,
-    position: 'absolute',
-    top: Dimensions.get("window").height * 0.5-124,
-  },
+  button: {
+    backgroundColor: "green",
+    padding: 15,
+    borderRadius: 25
+  }
 });
 
 export default InputModal;

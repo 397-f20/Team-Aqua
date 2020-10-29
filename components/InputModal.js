@@ -101,7 +101,8 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
                       }
           >
             <SelectImage image={image} setImage={setImage} />
-            {imageError ? <Text style={{fontSize: 16, marginTop: 5, color:'#fc5c65', fontWeight: 'bold', textAlign: 'center'}}>
+            {imageError
+              ? <Text style={{fontSize: 16, marginTop: 5, color:'#fc5c65', fontWeight: 'bold', textAlign: 'center'}}>
                           Image is required</Text> : null}
             <Form.Field
               name="title"

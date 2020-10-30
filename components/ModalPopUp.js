@@ -18,12 +18,16 @@ import PinList from "./PinList";
 // Make a state variable for dummy_pins
 // get pin data in App, load default data, then you load firebase data
 
-
-const ModalPopUp = ({ modalVisible, setModalVisible, pin, caller, pinData }) => {
+const ModalPopUp = ({
+  modalVisible,
+  setModalVisible,
+  pin,
+  caller,
+  pinData,
+}) => {
   var res = null;
   var item = null;
 
-  console.log(pinData["markers"])
   if (caller === "marker") {
     for (item in pinData["markers"]) {
       if (item === pin["pin"]) {
@@ -33,13 +37,18 @@ const ModalPopUp = ({ modalVisible, setModalVisible, pin, caller, pinData }) => 
   } else if (caller === "search") {
     res = [];
     for (item in pinData["markers"]) {
-      if (pinData["markers"][item]["title"].toLowerCase().includes(pin.toLowerCase()) ||
-          pinData["markers"][item]["description"].toLowerCase().includes(pin.toLowerCase())) {
-            res.push(pinData["markers"][item]);
-          }
+      if (
+        pinData["markers"][item]["title"]
+          .toLowerCase()
+          .includes(pin.toLowerCase()) ||
+        pinData["markers"][item]["description"]
+          .toLowerCase()
+          .includes(pin.toLowerCase())
+      ) {
+        res.push(pinData["markers"][item]);
+      }
     }
   }
-
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>

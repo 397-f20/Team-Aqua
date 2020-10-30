@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import SelectImage from "./SelectImage";
-import { Image, StyleSheet, SafeAreaView, View, Text, TouchableOpacity, buttonState, Dimensions } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  buttonState,
+  Dimensions,
+} from "react-native";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
-import marker  from '../assets/icons8-marker.png';
+import marker from "../assets/icons8-marker.png";
 
-const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, setChoosePin}) => {
+const InputModal = ({
+  formVisible,
+  setFormVisible,
+  location,
+  region,
+  choosePin,
+  setChoosePin,
+}) => {
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
@@ -48,8 +64,7 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
 
   const handleSubmit = async (values) => {
     setFormVisible(false);
-    console.log("2")
-    console.log(buttonState)
+
     const { title, description } = values;
     const remoteUri = await uploadPhotoAsync(image);
     const id = generateUniqueId();
@@ -63,7 +78,6 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
       longitude: `${long}`,
       uri: remoteUri,
     };
-    console.log(pin)
 
     firebase
       .database()
@@ -83,27 +97,38 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
     <SafeAreaView>
       <Modal isVisible={formVisible} avoidKeyboard={true}>
         <View>
-          <TouchableOpacity testID='close' onPress={() => setFormVisible(false)}>
+          <TouchableOpacity
+            testID="close"
+            onPress={() => setFormVisible(false)}
+          >
             <Ionicons name="ios-close" size={45} color="white" />
           </TouchableOpacity>
 
           <Form
-            initialValues={{ title: "", description: ""}}
+            initialValues={{ title: "", description: "" }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-                                    if(image){
-                                      handleSubmit(values);
-                                    }
-                                    else{
-                                      setImageError(true);
-                                    }
-                                  }
-                      }
+              if (image) {
+                handleSubmit(values);
+              } else {
+                setImageError(true);
+              }
+            }}
           >
             <SelectImage image={image} setImage={setImage} />
-            {imageError
-              ? <Text style={{fontSize: 16, marginTop: 5, color:'#fc5c65', fontWeight: 'bold', textAlign: 'center'}}>
-                          Image is required</Text> : null}
+            {imageError ? (
+              <Text
+                style={{
+                  fontSize: 16,
+                  marginTop: 5,
+                  color: "#fc5c65",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                Image is required
+              </Text>
+            ) : null}
             <Form.Field
               name="title"
               leftIcon="map-search"
@@ -115,22 +140,27 @@ const InputModal = ({ formVisible, setFormVisible, location, region, choosePin, 
               placeholder="Description"
             />
 
-            <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
+            <SafeAreaView
+              style={{ alignItems: "center", justifyContent: "center" }}
+            >
               <TouchableOpacity
                 style={styles.button}
-                onPress = { () => setChoosePin(true) & setFormVisible(false)  }>
-                <Text style={{color: "white"}}>Set Location</Text>
+                onPress={() => setChoosePin(true) & setFormVisible(false)}
+              >
+                <Text style={{ color: "white" }}>Set Location</Text>
               </TouchableOpacity>
             </SafeAreaView>
 
-            <Form.Button color="black" title={"Add Your Spot"} disabled={buttonState} />
+            <Form.Button
+              color="black"
+              title={"Add Your Spot"}
+              disabled={buttonState}
+            />
             {<Form.ErrorMessage error={error} visible={true} />}
           </Form>
         </View>
       </Modal>
-
     </SafeAreaView>
-
   );
 };
 
@@ -138,8 +168,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "green",
     padding: 15,
-    borderRadius: 25
-  }
+    borderRadius: 25,
+  },
 });
 
 export default InputModal;

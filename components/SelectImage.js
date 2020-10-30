@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { Button, StyleSheet, Image, SafeAreaView, Platform, TouchableOpacity, Text } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  Platform,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 
@@ -25,8 +33,6 @@ const SelectImage = ({ image, setImage }) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
     }
@@ -37,13 +43,13 @@ const SelectImage = ({ image, setImage }) => {
       {image && (
         <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
       )}
-      <TouchableOpacity
-      style={styles.button}
-      onPress = {pickImage}>
-      {image ?
-        (<Text style={{color: "white"}}>Change Image</Text>) :
-        (<Text style={{color: "white"}}>Choose an Image for Your Spot</Text>) }
-    </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={pickImage}>
+        {image ? (
+          <Text style={{ color: "white" }}>Change Image</Text>
+        ) : (
+          <Text style={{ color: "white" }}>Choose an Image for Your Spot</Text>
+        )}
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -53,8 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     padding: 15,
     marginTop: 10,
-    borderRadius: 25
-  }
+    borderRadius: 25,
+  },
 });
 
 export default SelectImage;

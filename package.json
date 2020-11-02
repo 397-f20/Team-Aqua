@@ -10,7 +10,7 @@
     "predeploy": "expo build:web",
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
     "test": "jest",
-	"cypress:open": "cypress open"
+    "cypress:open": "cypress open"
   },
   "jest": {
     "preset": "jest-expo",

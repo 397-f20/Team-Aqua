@@ -8,7 +8,6 @@ import InputModal from "./InputModal";
 const UserInput = ({ region, choosePin, setChoosePin }) => {
   const [location, setLocation] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
-  const [progress, setProgress] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -40,7 +39,6 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
           formVisible={formVisible}
           setFormVisible={setFormVisible}
           location={location}
-          progress={progress}
           region={region}
           choosePin={choosePin}
           setChoosePin={setChoosePin}
@@ -49,7 +47,7 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
       <View style={styles.bottomMenu}>
         {!choosePin ? (
           <TouchableOpacity
-            onPress={() => setFormVisible(true) && setProgress("editing")}
+            onPress={() => setFormVisible(true)}
             style={{ flex: 1, alignItems: "center" }}
           >
             <Ionicons name="ios-add" size={45} color="green" />
@@ -61,7 +59,6 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
               testID="close"
               onPress={() => {
                 setChoosePin(false);
-                setFormVisible(true);
               }}
               style={{ flex: 1, alignItems: "center" }}
             >
@@ -71,7 +68,6 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
             <TouchableOpacity
               onPress={() => {
                 setChoosePin(false);
-                setFormVisible(true);
                 userChooseLocation(region);
               }}
               style={{ flex: 1, alignItems: "center" }}

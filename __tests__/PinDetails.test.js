@@ -1,5 +1,5 @@
 import React from "react";
-import renderer from "react-test renderer";
+import renderer from "react-test-renderer";
 
 import PinDetails from "../components/PinDetails";
 
@@ -9,4 +9,6 @@ import { expect, it } from "@jest/globals";
 jest.mock("react-native/Libraries/Modal/Modal", () => {
   const Modal = jest.requireActual("react-native/Libraries/Modal/Modal");
   return (props) => <Modal {...props} />;
-});
+})
+  it('shows pin details correctly', async () => {
+  });

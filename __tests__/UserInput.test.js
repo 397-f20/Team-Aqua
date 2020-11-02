@@ -15,10 +15,10 @@ jest.mock('react-native/Libraries/Modal/Modal', () => {
 it('renders input modal correctly', async () => {
   const {getByText, getByTestId, debug} = render(<UserInput />)
 
-  expect(()=> getByText(/Add Pin/i)).toThrow(/no instances found/i) //modal is initially closed
+  expect(()=> getByText(/Add Your Spot/i)).toThrow(/no instances found/i) //modal is initially closed
 
   fireEvent.press(getByText(/Add a Spot/i))
-  await waitFor(()=> getByText(/Add Pin/i)) //modal is now visible
+  await waitFor(()=> getByText(/Add Your Spot/i)) //modal is now visible
 
   fireEvent.press(getByTestId('close'))
   expect(()=> getByText(/Add Pin/i)).toThrow(/no instances found/i) //modal is closed again

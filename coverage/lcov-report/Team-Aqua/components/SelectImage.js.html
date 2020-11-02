@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">61.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">61.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
@@ -117,18 +117,32 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,7 +150,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,13 +159,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,7 +179,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,7 +190,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect } from "react";
-import { Button, StyleSheet, Image, SafeAreaView, Platform, TouchableOpacity, Text } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  Platform,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 &nbsp;
@@ -204,8 +224,6 @@ const SelectImage = ({ image, setImage }) =&gt; {
       quality: 1,
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.log(result);</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!result.cancelled) {</span>
 <span class="cstat-no" title="statement not covered" >      setImage(result.uri);</span>
     }
@@ -216,13 +234,13 @@ const SelectImage = ({ image, setImage }) =&gt; {
       {image &amp;&amp; (
 <span class="branch-1 cbranch-no" title="branch not covered" >        &lt;Image source={{ uri: image }} style={{ width: 200, height: 200 }} /&gt;</span>
       )}
-      &lt;TouchableOpacity
-      style={styles.button}
-      onPress = {pickImage}&gt;
-      {image ?
-        (<span class="branch-0 cbranch-no" title="branch not covered" >&lt;Text style={{color: "white"}}&gt;Change Image&lt;/Text&gt;)</span> :
-        (&lt;Text style={{color: "white"}}&gt;Choose an Image for Your Spot&lt;/Text&gt;) }
-    &lt;/TouchableOpacity&gt;
+      &lt;TouchableOpacity style={styles.button} onPress={pickImage}&gt;
+        {image ? (
+<span class="branch-0 cbranch-no" title="branch not covered" >          &lt;Text style={{ color: "white" }}&gt;Change Image&lt;/Text&gt;</span>
+        ) : (
+          &lt;Text style={{ color: "white" }}&gt;Choose an Image for Your Spot&lt;/Text&gt;
+        )}
+      &lt;/TouchableOpacity&gt;
     &lt;/SafeAreaView&gt;
   );
 };
@@ -232,8 +250,8 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     padding: 15,
     marginTop: 10,
-    borderRadius: 25
-  }
+    borderRadius: 25,
+  },
 });
 &nbsp;
 export default SelectImage;
@@ -244,7 +262,7 @@ export default SelectImage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Oct 29 2020 21:40:00 GMT-0500 (Central Daylight Time)
+                at Mon Nov 02 2020 15:20:24 GMT-0600 (Central Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

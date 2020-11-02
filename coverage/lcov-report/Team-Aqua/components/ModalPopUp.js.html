@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
@@ -147,8 +147,16 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,6 +177,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,7 +190,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -184,8 +197,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,12 +275,16 @@ import PinList from "./PinList";
 // Make a state variable for dummy_pins
 // get pin data in App, load default data, then you load firebase data
 &nbsp;
-&nbsp;
-const ModalPopUp = <span class="fstat-no" title="function not covered" >({</span> modalVisible, setModalVisible, pin, caller, pinData }) =&gt; {
+const ModalPopUp = <span class="fstat-no" title="function not covered" >({</span>
+  modalVisible,
+  setModalVisible,
+  pin,
+  caller,
+  pinData,
+}) =&gt; {
   var res = <span class="cstat-no" title="statement not covered" >null;</span>
   var item = <span class="cstat-no" title="statement not covered" >null;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  console.log(pinData["markers"])</span>
 <span class="cstat-no" title="statement not covered" >  if (caller === "marker") {</span>
 <span class="cstat-no" title="statement not covered" >    for (item in pinData["markers"]) {</span>
 <span class="cstat-no" title="statement not covered" >      if (item === pin["pin"]) {</span>
@@ -272,13 +294,18 @@ const ModalPopUp = <span class="fstat-no" title="function not covered" >({</span
   } else <span class="cstat-no" title="statement not covered" >if (caller === "search") {</span>
 <span class="cstat-no" title="statement not covered" >    res = [];</span>
 <span class="cstat-no" title="statement not covered" >    for (item in pinData["markers"]) {</span>
-<span class="cstat-no" title="statement not covered" >      if (pinData["markers"][item]["title"].toLowerCase().includes(pin.toLowerCase()) ||</span>
-          pinData["markers"][item]["description"].toLowerCase().includes(pin.toLowerCase())) {
-<span class="cstat-no" title="statement not covered" >            res.push(pinData["markers"][item]);</span>
-          }
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        pinData["markers"][item]["title"]
+          .toLowerCase()
+          .includes(pin.toLowerCase()) ||
+        pinData["markers"][item]["description"]
+          .toLowerCase()
+          .includes(pin.toLowerCase())
+      ) {
+<span class="cstat-no" title="statement not covered" >        res.push(pinData["markers"][item]);</span>
+      }
     }
   }
-&nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Modal animationType="slide" transparent={true} visible={modalVisible}&gt;
@@ -334,7 +361,7 @@ export default ModalPopUp;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Oct 29 2020 21:40:00 GMT-0500 (Central Daylight Time)
+                at Mon Nov 02 2020 15:20:24 GMT-0600 (Central Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

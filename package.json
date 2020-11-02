@@ -9,7 +9,8 @@
     "build": "expo build:ios",
     "predeploy": "expo build:web",
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
-    "test": "jest"
+    "test": "jest",
+	"cypress:open": "cypress open"
   },
   "jest": {
     "preset": "jest-expo",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "cypress": "^5.5.0",
     "jest-expo": "^39.0.0",
     "react-test-renderer": "^17.0.0"
   },

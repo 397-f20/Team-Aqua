@@ -10,14 +10,20 @@
     "predeploy": "expo build:web",
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
     "test": "jest",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:ci": "cypress run --config video=false",
+    "test:ci": "jest --watchAll=false && start-server-and-test web http://localhost:19006 cypress:ci"
   },
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
-    "collectCoverage": true
+    "collectCoverage": true,
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+test.[jt]s?(x)"
+    ]
   },
   "dependencies": {
     "@react-native-community/geolocation": "1.4.2",
@@ -52,7 +58,8 @@
     "@babel/core": "~7.9.0",
     "cypress": "^5.5.0",
     "jest-expo": "^39.0.0",
-    "react-test-renderer": "^17.0.0"
+    "react-test-renderer": "^17.0.0",
+    "start-server-and-test": "^1.11.5"
   },
   "private": true
 }

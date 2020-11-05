@@ -4,10 +4,12 @@ import * as Location from "expo-location";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import InputModal from "./InputModal";
+import SignInModal from "./SignInModal";
 
 const UserInput = ({ region, choosePin, setChoosePin }) => {
   const [location, setLocation] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
+  const [signInVisible, setSignInVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -44,16 +46,32 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
           setChoosePin={setChoosePin}
         />
       ) : null}
+      {signInVisible ? (
+        <SignInModal
+          signInVisible={signInVisible}
+          setSignInVisible={setSignInVisible}
+        />
+      ) : null}
       <View style={styles.bottomMenu}>
         {!choosePin ? (
-          <TouchableOpacity
-            onPress={() => setFormVisible(true)}
-            style={{ flex: 1, alignItems: "center" }}
-          >
-            <Ionicons name="ios-add" size={45} color="green" />
-            <Text style={{ color: "green" }}>Add a Spot</Text>
-          </TouchableOpacity>
-        ) : (
+          <React.Fragment>
+            <TouchableOpacity
+              onPress={() => setFormVisible(true)}
+              style={{ flex: 1, alignItems: "center" }}
+            >
+              <Ionicons name="ios-add" size={45} color="green" />
+              <Text style={{ color: "green" }}>Add a Spot</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setSignInVisible(true)}
+              style={{ flex: 1, alignItems: "center" }}
+            >
+              <Ionicons name="ios-person" size={45} color="green" />
+              <Text style={{ color: "green" }}>Sign In</Text>
+            </TouchableOpacity>
+          </React.Fragment>
+        )
+        : (
           <React.Fragment>
             <TouchableOpacity
               testID="close"

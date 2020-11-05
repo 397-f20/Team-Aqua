@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import UserContext from '../UserContext';
 import SelectImage from "./SelectImage";
 import {
   Image,
@@ -25,6 +26,7 @@ const InputModal = ({
   choosePin,
   setChoosePin,
 }) => {
+  const user = useContext(UserContext);
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
@@ -78,6 +80,7 @@ const InputModal = ({
       longitude: `${long}`,
       uri: remoteUri,
     };
+    console.log(pin);
 
     firebase
       .database()

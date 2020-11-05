@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import UserContext from './UserContext';
-import { Image, View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Dimensions } from "react-native";
+import UserContext from "./UserContext";
+import {
+  Image,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 //import MapView, { Marker, PROVIDER_GOOGLE, MAP_TYPES } from "react-native-maps";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
-import WebView from 'react-native-webview';
 import dummy_pins from "./dummy_pins.json";
 import UserInput from "./components/UserInput";
-import { Ionicons } from "@expo/vector-icons";
 import { firebase } from "./firebase";
-import marker  from './assets/icons8-marker.png';
-import SignInModal from './components/SignInModal';
+import marker from "./assets/icons8-marker.png";
 
 export default function App() {
   const [auth, setAuth] = useState();
@@ -30,25 +33,26 @@ export default function App() {
   });
 
   useEffect(() => {
-      firebase.auth().onAuthStateChanged((auth) => {
-        setAuth(auth);
-      });
-    }, []);
+    firebase.auth().onAuthStateChanged((auth) => {
+      setAuth(auth);
+    });
+  }, []);
 
-    useEffect(() => {
-      if (auth && auth.uid) {
-        const db = firebase.database().ref('users').child(auth.uid);
-        const handleData = snap => {
-            const val = snap.val()
-            setUser({uid: auth.uid, ...val});
-        }
-        db.on('value', handleData, error => alert(error));
-        return () => { db.off('value', handleData); };
-      }
-      else {
-        setUser(null);
-      }
-    }, [auth]);
+  useEffect(() => {
+    if (auth && auth.uid) {
+      const db = firebase.database().ref("users").child(auth.uid);
+      const handleData = (snap) => {
+        const val = snap.val();
+        setUser({ uid: auth.uid, ...val });
+      };
+      db.on("value", handleData, (error) => alert(error));
+      return () => {
+        db.off("value", handleData);
+      };
+    } else {
+      setUser(null);
+    }
+  }, [auth]);
 
   useEffect(() => {
     const pins = firebase.database().ref();
@@ -92,41 +96,31 @@ export default function App() {
             initialRegion={region}
             showsUserLocation={true}
             showsMyLocationButton={true}
-            // onRegionChangeComplete={
-            //   setRegion
-            // }
-            // onRegionChange={
-            //   (region)=>{
-            //   console.log(choosePin)
-            //   }
-            // }
-            onRegionChange={
-              (region)=>{
-                   setRegion(region)
-                   }
-            }
+            onRegionChange={(region) => {
+              setRegion(region);
+            }}
           >
-          {Object.keys(pinData.markers).map((pin, i) => (
-            <Marker
-              coordinate={{
-                latitude: +pinData.markers[pin].latitude,
-                longitude: +pinData.markers[pin].longitude,
-              }}
-              onPress={() => {
-                setCaller("marker");
-                setPinSelected({pin});
-                setModalVisible(!modalVisible);
-              }}
-              identifier={pin}
-              key={i}
-            />
-          ))}
+            {Object.keys(pinData.markers).map((pin, i) => (
+              <Marker
+                coordinate={{
+                  latitude: +pinData.markers[pin].latitude,
+                  longitude: +pinData.markers[pin].longitude,
+                }}
+                onPress={() => {
+                  setCaller("marker");
+                  setPinSelected({ pin });
+                  setModalVisible(!modalVisible);
+                }}
+                identifier={pin}
+                key={i}
+              />
+            ))}
           </MapView>
-          { choosePin &&
+          {choosePin && (
             <View style={styles.markerFixed}>
-            <Image style={styles.marker} source={marker} />
+              <Image style={styles.marker} source={marker} />
             </View>
-            }
+          )}
           {modalVisible ? (
             <ModalPopUp
               modalVisible={modalVisible}
@@ -136,7 +130,11 @@ export default function App() {
               pinData={pinData}
             />
           ) : null}
-          <UserInput region = {region} choosePin={choosePin} setChoosePin={setChoosePin}/>
+          <UserInput
+            region={region}
+            choosePin={choosePin}
+            setChoosePin={setChoosePin}
+          />
         </SafeAreaView>
       </View>
     </UserContext.Provider>
@@ -155,8 +153,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height * 0.75,
   },
   markerFixed: {
-    left: Dimensions.get("window").width * 0.5-64,
-    position: 'absolute',
-    top: Dimensions.get("window").height * 0.5-124,
+    left: Dimensions.get("window").width * 0.5 - 64,
+    position: "absolute",
+    top: Dimensions.get("window").height * 0.5 - 124,
   },
 });

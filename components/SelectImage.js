@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import {
-  Button,
   StyleSheet,
   Image,
   SafeAreaView,
   Platform,
   TouchableOpacity,
   Text,
+  Dimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
@@ -57,9 +57,11 @@ const SelectImage = ({ image, setImage }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "green",
+    alignItems: "center",
     padding: 15,
     marginTop: 10,
     borderRadius: 25,
+    width: Dimensions.get("window").width * 0.9,
   },
 });
 

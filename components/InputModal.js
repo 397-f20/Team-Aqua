@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
-import UserContext from '../UserContext';
+import UserContext from "../UserContext";
 import SelectImage from "./SelectImage";
 import {
-  Image,
   StyleSheet,
   SafeAreaView,
   View,
@@ -26,7 +25,7 @@ const InputModal = ({
   choosePin,
   setChoosePin,
 }) => {
-  const user = useContext(UserContext);
+  const currentUser = useContext(UserContext);
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
@@ -72,6 +71,28 @@ const InputModal = ({
     const id = generateUniqueId();
     const lat = Math.round(location["coords"].latitude * 1000000) / 1000000;
     const long = Math.round(location["coords"].longitude * 1000000) / 1000000;
+    // if (currentUser) {
+    //   const pin = {
+    //     description: description,
+    //     title: title,
+    //     id: id,
+    //     latitude: `${lat}`,
+    //     longitude: `${long}`,
+    //     uri: remoteUri,
+    //     uid: currentUser.uid,
+    //     userName: currentUser.userName,
+    //   };
+    // } else {
+    //   const pin = {
+    //     description: description,
+    //     title: title,
+    //     id: id,
+    //     latitude: `${lat}`,
+    //     longitude: `${long}`,
+    //     uri: remoteUri,
+    //   };
+    // }
+
     const pin = {
       description: description,
       title: title,
@@ -79,8 +100,9 @@ const InputModal = ({
       latitude: `${lat}`,
       longitude: `${long}`,
       uri: remoteUri,
+      uid: currentUser.uid,
+      userName: currentUser.userName,
     };
-    console.log(pin);
 
     firebase
       .database()
@@ -98,77 +120,77 @@ const InputModal = ({
 
   return (
     <View>
-    {!choosePin ? (
-      <SafeAreaView>
-        <Modal isVisible={formVisible} avoidKeyboard={true}>
-          <View>
-            <TouchableOpacity
-              testID="close"
-              onPress={() => setFormVisible(false)}
-            >
-              <Ionicons name="ios-close" size={45} color="white" />
-            </TouchableOpacity>
-
-            <Form
-              initialValues={{ title: "", description: "" }}
-              validationSchema={validationSchema}
-              onSubmit={(values) => {
-                if (image) {
-                  handleSubmit(values);
-                } else {
-                  setImageError(true);
-                }
-              }}
-            >
-              <SelectImage image={image} setImage={setImage} />
-              {imageError ? (
-                <Text
-                  style={{
-                    fontSize: 16,
-                    marginTop: 5,
-                    color: "#fc5c65",
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  Image is required
-                </Text>
-              ) : null}
-              <Form.Field
-                name="title"
-                leftIcon="map-search"
-                placeholder="Spot Name"
-              />
-              <Form.Field
-                name="description"
-                leftIcon="subtitles"
-                placeholder="Description"
-              />
-
-              <SafeAreaView
-                style={{ alignItems: "center", justifyContent: "center" }}
+      {!choosePin ? (
+        <SafeAreaView>
+          <Modal isVisible={formVisible} avoidKeyboard={true}>
+            <View>
+              <TouchableOpacity
+                testID="close"
+                onPress={() => setFormVisible(false)}
               >
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    setChoosePin(true);
-                  }}
-                >
-                  <Text style={{ color: "white" }}>Set Location</Text>
-                </TouchableOpacity>
-              </SafeAreaView>
+                <Ionicons name="ios-close" size={45} color="white" />
+              </TouchableOpacity>
 
-              <Form.Button
-                color="black"
-                title={"Add Your Spot"}
-                disabled={buttonState}
-              />
-              {<Form.ErrorMessage error={error} visible={true} />}
-            </Form>
-          </View>
-        </Modal>
-      </SafeAreaView>
-    ) : null}
+              <Form
+                initialValues={{ title: "", description: "" }}
+                validationSchema={validationSchema}
+                onSubmit={(values) => {
+                  if (image) {
+                    handleSubmit(values);
+                  } else {
+                    setImageError(true);
+                  }
+                }}
+              >
+                <SelectImage image={image} setImage={setImage} />
+                {imageError ? (
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      marginTop: 5,
+                      color: "#fc5c65",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    Image is required
+                  </Text>
+                ) : null}
+                <Form.Field
+                  name="title"
+                  leftIcon="map-search"
+                  placeholder="Spot Name"
+                />
+                <Form.Field
+                  name="description"
+                  leftIcon="subtitles"
+                  placeholder="Description"
+                />
+
+                <View
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      setChoosePin(true);
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>Set Location</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <Form.Button
+                  color="black"
+                  title={"Add Your Spot"}
+                  disabled={buttonState}
+                />
+                {<Form.ErrorMessage error={error} visible={true} />}
+              </Form>
+            </View>
+          </Modal>
+        </SafeAreaView>
+      ) : null}
     </View>
   );
 };
@@ -178,6 +200,8 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     padding: 15,
     borderRadius: 25,
+    width: Dimensions.get("window").width * 0.9,
+    alignItems: "center",
   },
 });
 

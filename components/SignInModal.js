@@ -1,113 +1,158 @@
-import React, { useState } from 'react';
-import Form from './Form';
-import { SafeAreaView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useContext } from "react";
+import Form from "./Form";
+import {
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+  Text,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
-import { firebase } from '../firebase';
-import * as Yup from 'yup';
+import { firebase } from "../firebase";
+import * as Yup from "yup";
+import UserContext from "../UserContext";
 
 const validationSchema = Yup.object().shape({
+  userName: Yup.string().label("userName"),
   email: Yup.string()
-    .required('Please enter a valid email')
+    .required("Please enter a valid email")
     .email()
-    .label('Email'),
+    .label("Email"),
   password: Yup.string()
     .required()
-    .min(6, 'Password must have at least 6 characters')
-    .label('Password'),
+    .min(6, "Password must have at least 6 characters")
+    .label("Password"),
   confirm: Yup.string()
     .nullable()
-    .oneOf([Yup.ref('password'), ''], 'Confirmation password must match password'),
+    .oneOf(
+      [Yup.ref("password"), ""],
+      "Confirmation password must match password"
+    ),
 });
 
-const SignInModal = ({
-  signInVisible,
-  setSignInVisible,
-}) => {
-  const [signInError, setSignInError] = useState('')
+const SignInModal = ({ signInVisible, setSignInVisible }) => {
+  const [signInError, setSignInError] = useState("");
+  const currentUser = useContext(UserContext);
 
   const handleOnSubmit = (values) => {
-      if (values.confirm) {
-          firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
-          .then(function(firebaseUser) {
-              setSignInVisible(false);
-          })
-          .catch(function(error) {
-            if (error.code === 'auth/email-already-in-use'){
-               setSignInError("Account already exists.");
-             }
-            else {
-              setSignInError(error.message);
-            }
-          });
-      }
-      else {
-        firebase.auth().signInWithEmailAndPassword(values.email, values.password)
-           .then(function(firebaseUser) {
-               setSignInVisible(false);
-           })
-          .catch(function(error) {
-            if (error.code === 'auth/user-not-found'){
-               setSignInError("Account not found. Confirm password to sign up.");
-             }
-            else if (error.code === 'auth/wrong-password'){
-              setSignInError("Wrong password.");
-            }
-            else {
-              setSignInError(error.message);
-            }
-          });
-      }
-  }
+    if (values.confirm) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(values.email, values.password)
+        .then((firebaseUser) => {
+          setSignInVisible(false);
+          return firebaseUser.user
+            .updateProfile({
+              displayName: `${values.userName}`,
+            })
+            .then((profile) => {
+              firebase
+                .database()
+                .ref("users")
+                .child(firebaseUser.user.uid)
+                .set({
+                  userName: values.userName,
+                  uid: firebaseUser.user.uid,
+                });
+            });
+        })
+        .catch(function (error) {
+          if (error.code === "auth/email-already-in-use") {
+            setSignInError("Account already exists.");
+          } else {
+            setSignInError(error.message);
+          }
+        });
+    } else {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then(function (firebaseUser) {
+          setSignInVisible(false);
+        })
+        .catch(function (error) {
+          if (error.code === "auth/user-not-found") {
+            setSignInError("Account not found. Confirm password to sign up.");
+          } else if (error.code === "auth/wrong-password") {
+            setSignInError("Wrong password.");
+          } else {
+            setSignInError(error.message);
+          }
+        });
+    }
+  };
 
   return (
     <SafeAreaView>
-    <Modal isVisible={signInVisible} avoidKeyboard={true}>
-      <TouchableOpacity
-        testID="close"
-        onPress={() => setSignInVisible(false)}
-      >
-        <Ionicons name="ios-close" size={45} color="white" />
-      </TouchableOpacity>
-        <Form
-          initialValues={{
-            email: '',
-            password: '',
-            confirm: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={handleOnSubmit}
+      <Modal isVisible={signInVisible} avoidKeyboard={true}>
+        <TouchableOpacity
+          testID="close"
+          onPress={() => setSignInVisible(false)}
         >
-          <Form.Field
-            name="email"
-            leftIcon="email"
-            placeholder="Enter email"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            textContentType="emailAddress"
-          />
-          <Form.Field
-            name="password"
-            leftIcon="lock"
-            placeholder="Enter password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry={true}
-            textContentType="password"
-          />
-          <Form.Field
-            name="confirm"
-            leftIcon="lock"
-            placeholder="Confirm Password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry={true}
-            textContentType="password"
-          />
-          <Form.Button title={(values) => values.confirm ? 'Sign up' : 'Log in'} />
-          {<Form.ErrorMessage error={signInError} visible={true} />}
-        </Form>
-    </Modal>
+          <Ionicons name="ios-close" size={45} color="white" />
+        </TouchableOpacity>
+        {currentUser ? (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              firebase.auth().signOut();
+            }}
+          >
+            <Text style={{ color: "white" }}>Log Out</Text>
+          </TouchableOpacity>
+        ) : (
+          <Form
+            initialValues={{
+              userName: "",
+              email: "",
+              password: "",
+              confirm: "",
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleOnSubmit}
+          >
+            <Form.Field
+              name="userName"
+              leftIcon="account"
+              placeholder="Enter User Name"
+              autoCapitalize="none"
+              textContentType="userName"
+            />
+            <Form.Field
+              name="email"
+              leftIcon="email"
+              placeholder="Enter Email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+            />
+            <Form.Field
+              name="password"
+              leftIcon="lock"
+              placeholder="Enter Password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+            />
+            <Form.Field
+              name="confirm"
+              leftIcon="lock"
+              placeholder="Confirm Password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+            />
+            <Form.Button
+              color="green"
+              title={(values) => (values.confirm ? "Sign up" : "Log in")}
+            />
+            {<Form.ErrorMessage error={signInError} visible={true} />}
+          </Form>
+        )}
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -115,9 +160,16 @@ const SignInModal = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff'
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  button: {
+    backgroundColor: "green",
+    padding: 15,
+    borderRadius: 25,
+    width: Dimensions.get("window").width * 0.9,
+    alignItems: "center",
   },
 });
 

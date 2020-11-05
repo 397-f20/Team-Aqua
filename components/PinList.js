@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Image,
   View,
@@ -8,7 +8,7 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
-import AutoHeightWebView from "react-native-autoheight-webview";
+import WebView from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
 import PinDetails from "./PinDetails";
 
@@ -28,7 +28,14 @@ const PinList = ({ pins }) => {
                 setListActive(false);
               }}
             >
-              <Image style={styles.image} source={{ uri: `${pin["uri"]}` }} />
+              {Platform.OS !== "android" ? (
+                <Image style={styles.image} source={{ uri: `${pin["uri"]}` }} />
+              ) : (
+                <WebView
+                  style={styles.image}
+                  source={{ uri: `${pin["uri"]}` }}
+                />
+              )}
               <View style={{ flex: 3 }}>
                 <Text style={styles.resultTitle}>{pin["title"]}</Text>
                 <Text style={styles.resultText}>{pin["description"]}</Text>

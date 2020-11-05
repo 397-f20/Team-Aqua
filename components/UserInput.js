@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as Location from "expo-location";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 import SignInModal from "./SignInModal";
+import UserContext from "../UserContext";
 
 const UserInput = ({ region, choosePin, setChoosePin }) => {
   const [location, setLocation] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
   const [signInVisible, setSignInVisible] = useState(false);
+  const currentUser = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
@@ -67,11 +69,14 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
               style={{ flex: 1, alignItems: "center" }}
             >
               <Ionicons name="ios-person" size={45} color="green" />
-              <Text style={{ color: "green" }}>Sign In</Text>
+              {currentUser ? (
+                <Text style={{ color: "green" }}>Log Out</Text>
+              ) : (
+                <Text style={{ color: "green" }}>Sign In</Text>
+              )}
             </TouchableOpacity>
           </React.Fragment>
-        )
-        : (
+        ) : (
           <React.Fragment>
             <TouchableOpacity
               testID="close"

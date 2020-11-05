@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1604353799500" clover="3.2.0">
-  <project timestamp="1604353799501" name="All files">
-    <metrics statements="138" coveredstatements="66" conditionals="55" coveredconditionals="19" methods="47" coveredmethods="18" elements="240" coveredelements="103" complexity="0" loc="138" ncloc="138" packages="4" files="17" classes="17"/>
-    <package name="Team-Aqua">
+<coverage generated="1604546435463" clover="3.2.0">
+  <project timestamp="1604546435463" name="All files">
+    <metrics statements="141" coveredstatements="70" conditionals="55" coveredconditionals="19" methods="47" coveredmethods="20" elements="243" coveredelements="109" complexity="0" loc="141" ncloc="141" packages="4" files="17" classes="17"/>
+    <package name="TheSpot">
       <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
-      <file name="firebase.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/firebase.js">
+      <file name="firebase.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/firebase.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
         <line num="5" count="3" type="stmt"/>
         <line num="16" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="17" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="Team-Aqua.assets">
+    <package name="TheSpot.assets">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="icons8-marker.png" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/assets/icons8-marker.png">
+      <file name="icons8-marker.png" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/assets/icons8-marker.png">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="Team-Aqua.components">
-      <metrics statements="111" coveredstatements="48" conditionals="40" coveredconditionals="11" methods="36" coveredmethods="12"/>
-      <file name="Directions.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Directions.js">
-        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+    <package name="TheSpot.components">
+      <metrics statements="114" coveredstatements="52" conditionals="40" coveredconditionals="11" methods="36" coveredmethods="14"/>
+      <file name="Directions.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Directions.js">
+        <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
       </file>
-      <file name="Form.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Form.js">
+      <file name="Form.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Form.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="8" count="3" type="stmt"/>
         <line num="10" count="3" type="stmt"/>
@@ -37,7 +37,7 @@
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
       </file>
-      <file name="InputModal.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/InputModal.js">
+      <file name="InputModal.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/InputModal.js">
         <metrics statements="36" coveredstatements="11" conditionals="8" coveredconditionals="2" methods="13" coveredmethods="2"/>
         <line num="20" count="3" type="stmt"/>
         <line num="28" count="3" type="stmt"/>
@@ -76,7 +76,7 @@
         <line num="151" count="0" type="stmt"/>
         <line num="173" count="3" type="stmt"/>
       </file>
-      <file name="ModalPopUp.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/ModalPopUp.js">
+      <file name="ModalPopUp.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/ModalPopUp.js">
         <metrics statements="15" coveredstatements="2" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="21" count="1" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
@@ -94,28 +94,31 @@
         <line num="59" count="0" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
       </file>
-      <file name="PinDetails.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/PinDetails.js">
-        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="PinDetails.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/PinDetails.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-      </file>
-      <file name="PinList.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/PinList.js">
-        <metrics statements="11" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="2"/>
-        <line num="7" count="1" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="10" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
       </file>
-      <file name="SelectImage.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/SelectImage.js">
+      <file name="PinList.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/PinList.js">
+        <metrics statements="14" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="2"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+      </file>
+      <file name="SelectImage.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/SelectImage.js">
         <metrics statements="13" coveredstatements="8" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="3"/>
         <line num="14" count="3" type="stmt"/>
         <line num="15" count="3" type="stmt"/>
@@ -131,7 +134,7 @@
         <line num="41" count="3" type="stmt"/>
         <line num="57" count="3" type="stmt"/>
       </file>
-      <file name="UserInput.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/UserInput.js">
+      <file name="UserInput.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/UserInput.js">
         <metrics statements="21" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="7" coveredmethods="4"/>
         <line num="8" count="3" type="stmt"/>
         <line num="9" count="9" type="stmt"/>
@@ -156,35 +159,35 @@
         <line num="85" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="Team-Aqua.components.Forms">
+    <package name="TheSpot.components.Forms">
       <metrics statements="23" coveredstatements="14" conditionals="13" coveredconditionals="7" methods="11" coveredmethods="6"/>
-      <file name="Form.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/Form.js">
+      <file name="Form.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/Form.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="10" count="3" type="stmt"/>
         <line num="16" count="4" type="stmt"/>
       </file>
-      <file name="FormButton.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormButton.js">
+      <file name="FormButton.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/FormButton.js">
         <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="11" count="4" type="stmt"/>
         <line num="21" count="3" type="stmt"/>
       </file>
-      <file name="FormErrorMessage.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormErrorMessage.js">
+      <file name="FormErrorMessage.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/FormErrorMessage.js">
         <metrics statements="4" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="7" count="11" type="cond" truecount="2" falsecount="2"/>
         <line num="8" count="11" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="14" count="3" type="stmt"/>
       </file>
-      <file name="FormField.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormField.js">
+      <file name="FormField.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/FormField.js">
         <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="14" count="8" type="stmt"/>
         <line num="16" count="8" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
       </file>
-      <file name="FormSwitch.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormSwitch.js">
+      <file name="FormSwitch.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/FormSwitch.js">
         <metrics statements="7" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="8" count="0" type="stmt"/>
@@ -194,12 +197,12 @@
         <line num="17" count="0" type="stmt"/>
         <line num="25" count="3" type="stmt"/>
       </file>
-      <file name="FormTextInput.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormTextInput.js">
+      <file name="FormTextInput.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/FormTextInput.js">
         <metrics statements="2" coveredstatements="2" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="14" count="8" type="stmt"/>
         <line num="43" count="3" type="stmt"/>
       </file>
-      <file name="colors.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/colors.js">
+      <file name="colors.js" path="/Users/seunghyunchoi/Codes/GitHub/TheSpot/components/Forms/colors.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>

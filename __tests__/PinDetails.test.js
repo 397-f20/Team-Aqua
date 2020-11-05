@@ -1,5 +1,5 @@
 import React from "react";
-import renderer from "react-test renderer";
+import renderer from "react-test-renderer";
 
 import PinDetails from "../components/PinDetails";
 import PinList from "../components/PinList";

@@ -25,8 +25,8 @@ const PinDetails = ({ pin }) => {
       </TouchableOpacity>
       <Text style={styles.resultTitle}>{pin["title"]}</Text>
       <Text style={styles.resultText}>{pin["description"]}</Text>
-      {pin["userName"] ? (
-        <Text style={styles.resultText}> Uploaded By {pin["userName"]} </Text>
+      {pin["username"] ? (
+        <Text style={styles.resultText}> Uploaded By {pin["username"]} </Text>
       ) : null}
       <Directions lat={+pin["latitude"]} long={+pin["longitude"]} />
     </ScrollView>

@@ -80,7 +80,7 @@ const InputModal = ({
     //     longitude: `${long}`,
     //     uri: remoteUri,
     //     uid: currentUser.uid,
-    //     userName: currentUser.userName,
+    //     username: currentUser.username,
     //   };
     // } else {
     //   const pin = {
@@ -101,7 +101,7 @@ const InputModal = ({
       longitude: `${long}`,
       uri: remoteUri,
       uid: currentUser.uid,
-      userName: currentUser.userName,
+      username: currentUser.username,
     };
 
     firebase

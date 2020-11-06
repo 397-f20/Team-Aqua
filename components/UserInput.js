@@ -57,13 +57,24 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
       <View style={styles.bottomMenu}>
         {!choosePin ? (
           <React.Fragment>
-            <TouchableOpacity
-              onPress={() => setFormVisible(true)}
-              style={{ flex: 1, alignItems: "center" }}
-            >
-              <Ionicons name="ios-add" size={45} color="green" />
-              <Text style={{ color: "green" }}>Add a Spot</Text>
-            </TouchableOpacity>
+            {currentUser ? (
+              <TouchableOpacity
+                onPress={() => setFormVisible(true)}
+                style={{ flex: 1, alignItems: "center" }}
+              >
+                <Ionicons name="ios-add" size={45} color="green" />
+                <Text style={{ color: "green" }}>Add a Spot</Text>
+              </TouchableOpacity>
+            ) :
+              <TouchableOpacity
+                onPress={() => setSignInVisible(true)}
+                style={{ flex: 1, alignItems: "center" }}
+              >
+                <Ionicons name="ios-add" size={45} color="gray" />
+                <Text style={{ color: "gray" }}>Sign In to Add a Spot</Text>
+              </TouchableOpacity>
+            }
+
             <TouchableOpacity
               onPress={() => setSignInVisible(true)}
               style={{ flex: 1, alignItems: "center" }}

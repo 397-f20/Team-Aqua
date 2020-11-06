@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Dimensions,
   Text,
+  View,
+  Button,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
@@ -14,7 +16,7 @@ import * as Yup from "yup";
 import UserContext from "../UserContext";
 
 const validationSchema = Yup.object().shape({
-  userName: Yup.string().label("userName"),
+  username: Yup.string().label("username"),
   email: Yup.string()
     .required("Please enter a valid email")
     .email()
@@ -33,6 +35,7 @@ const validationSchema = Yup.object().shape({
 
 const SignInModal = ({ signInVisible, setSignInVisible }) => {
   const [signInError, setSignInError] = useState("");
+  const [signIn, setSignIn] = useState(true); //true= log in; false= sign up
   const currentUser = useContext(UserContext);
 
   const handleOnSubmit = (values) => {
@@ -44,7 +47,7 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
           setSignInVisible(false);
           return firebaseUser.user
             .updateProfile({
-              displayName: `${values.userName}`,
+              displayName: `${values.username}`,
             })
             .then((profile) => {
               firebase
@@ -52,7 +55,7 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
                 .ref("users")
                 .child(firebaseUser.user.uid)
                 .set({
-                  userName: values.userName,
+                  username: values.username,
                   uid: firebaseUser.user.uid,
                 });
             });
@@ -101,57 +104,107 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
           >
             <Text style={{ color: "white" }}>Log Out</Text>
           </TouchableOpacity>
-        ) : (
-          <Form
-            initialValues={{
-              userName: "",
-              email: "",
-              password: "",
-              confirm: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={handleOnSubmit}
-          >
-            <Form.Field
-              name="userName"
-              leftIcon="account"
-              placeholder="Enter User Name"
-              autoCapitalize="none"
-              textContentType="userName"
-            />
-            <Form.Field
-              name="email"
-              leftIcon="email"
-              placeholder="Enter Email"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              textContentType="emailAddress"
-            />
-            <Form.Field
-              name="password"
-              leftIcon="lock"
-              placeholder="Enter Password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={true}
-              textContentType="password"
-            />
-            <Form.Field
-              name="confirm"
-              leftIcon="lock"
-              placeholder="Confirm Password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={true}
-              textContentType="password"
-            />
-            <Form.Button
-              color="green"
-              title={(values) => (values.confirm ? "Sign up" : "Log in")}
-            />
-            {<Form.ErrorMessage error={signInError} visible={true} />}
-          </Form>
-        )}
+        ) :
+          signIn ? (
+            <View>
+              <Form
+                initialValues={{
+                  username: "",
+                  email: "",
+                  password: "",
+                  confirm: "",
+                }}
+                validationSchema={validationSchema}
+                onSubmit={handleOnSubmit}
+              >
+                <Form.Field
+                  name="email"
+                  leftIcon="email"
+                  placeholder="Enter Email"
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                />
+                <Form.Field
+                  name="password"
+                  leftIcon="lock"
+                  placeholder="Enter Password"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+                <Form.Button
+                  color="green"
+                  title="Sign In"
+                />
+                <Button
+                  onPress={() => setSignIn(false)}
+                  color="green"
+                  title="Or, Create an Account"
+                />
+                {<Form.ErrorMessage error={signInError} visible={true} />}
+              </Form>
+            </View>
+          ) : (
+             <View>
+               <Form
+                 initialValues={{
+                   username: "",
+                   email: "",
+                   password: "",
+                   confirm: "",
+                 }}
+                 validationSchema={validationSchema}
+                 onSubmit={handleOnSubmit}
+               >
+                 <Form.Field
+                   name="username"
+                   leftIcon="account"
+                   placeholder="Enter User Name"
+                   autoCapitalize="none"
+                   textContentType="username"
+                 />
+                 <Form.Field
+                   name="email"
+                   leftIcon="email"
+                   placeholder="Enter Email"
+                   autoCapitalize="none"
+                   keyboardType="email-address"
+                   textContentType="emailAddress"
+                 />
+                 <Form.Field
+                   name="password"
+                   leftIcon="lock"
+                   placeholder="Enter Password"
+                   autoCapitalize="none"
+                   autoCorrect={false}
+                   secureTextEntry={true}
+                   textContentType="password"
+                 />
+                 <Form.Field
+                   name="confirm"
+                   leftIcon="lock"
+                   placeholder="Confirm Password"
+                   autoCapitalize="none"
+                   autoCorrect={false}
+                   secureTextEntry={true}
+                   textContentType="password"
+                 />
+                 <Form.Button
+                   color="green"
+                   title="Sign Up"
+                 />
+                 <Button
+                   onPress={() => setSignIn(true)}
+                   color="green"
+                   title="Or, Log In"
+                 />
+                 {<Form.ErrorMessage error={signInError} visible={true} />}
+               </Form>
+             </View>
+           )
+        }
       </Modal>
     </SafeAreaView>
   );

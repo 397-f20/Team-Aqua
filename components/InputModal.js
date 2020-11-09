@@ -67,34 +67,11 @@ const InputModal = ({
   };
 
   const handleSubmit = async (values) => {
-    setFormVisible(false);
-
     const { title, description } = values;
     const remoteUri = await uploadPhotoAsync(image);
     const id = generateUniqueId();
     const lat = Math.round(location["coords"].latitude * 1000000) / 1000000;
     const long = Math.round(location["coords"].longitude * 1000000) / 1000000;
-    // if (currentUser) {
-    //   const pin = {
-    //     description: description,
-    //     title: title,
-    //     id: id,
-    //     latitude: `${lat}`,
-    //     longitude: `${long}`,
-    //     uri: remoteUri,
-    //     uid: currentUser.uid,
-    //     username: currentUser.username,
-    //   };
-    // } else {
-    //   const pin = {
-    //     description: description,
-    //     title: title,
-    //     id: id,
-    //     latitude: `${lat}`,
-    //     longitude: `${long}`,
-    //     uri: remoteUri,
-    //   };
-    // }
 
     const pin = {
       description: description,
@@ -119,6 +96,8 @@ const InputModal = ({
         setError(error.message);
         console.log(error);
       });
+
+    setFormVisible(false);
   };
 
   return (
@@ -135,7 +114,7 @@ const InputModal = ({
               </TouchableOpacity>
 
               <Form
-                initialValues={{ title: "", description: "" }}
+                initialValues={{ title: titleInput, description: descInput }}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
                   if (image) {
@@ -145,7 +124,7 @@ const InputModal = ({
                   }
                 }}
               >
-              <SelectImage image={image} setImage={setImage}/>
+                <SelectImage image={image} setImage={setImage} />
                 {imageError ? (
                   <Text
                     style={{
@@ -163,14 +142,17 @@ const InputModal = ({
                   name="title"
                   leftIcon="map-search"
                   value={titleInput}
-                  onChangeText={text => setTitleInput(text)}
+                  onChangeText={(text) => {
+                    setTitleInput(text);
+                    console.log(titleInput);
+                  }}
                   // Load from useState
                 />
                 <Form.Field
                   name="description"
                   leftIcon="subtitles"
                   value={descInput}
-                  onChangeText={text => setDescInput(text)}
+                  onChangeText={(text) => setDescInput(text)}
                   // Load from useState
                 />
 

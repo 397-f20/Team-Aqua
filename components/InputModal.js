@@ -29,7 +29,10 @@ const InputModal = ({
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
+  const [titleInput, setTitleInput] = useState("Spot Title");
+  const [descInput, setDescInput] = useState("description");
 
+  // Store array of filePath, title, description
   const validationSchema = yup.object().shape({
     title: yup.string().required().label("Title"),
     description: yup
@@ -142,7 +145,7 @@ const InputModal = ({
                   }
                 }}
               >
-                <SelectImage image={image} setImage={setImage} />
+              <SelectImage image={image} setImage={setImage}/>
                 {imageError ? (
                   <Text
                     style={{
@@ -159,12 +162,16 @@ const InputModal = ({
                 <Form.Field
                   name="title"
                   leftIcon="map-search"
-                  placeholder="Spot Name"
+                  value={titleInput}
+                  onChangeText={text => setTitleInput(text)}
+                  // Load from useState
                 />
                 <Form.Field
                   name="description"
                   leftIcon="subtitles"
-                  placeholder="Description"
+                  value={descInput}
+                  onChangeText={text => setDescInput(text)}
+                  // Load from useState
                 />
 
                 <View

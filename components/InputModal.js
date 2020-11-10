@@ -103,7 +103,7 @@ const InputModal = ({
   return (
     <View>
       {!choosePin ? (
-        <SafeAreaView>
+        <SafeAreaView style = {styles.webview}>
           <Modal isVisible={formVisible} avoidKeyboard={true}>
             <View>
               <TouchableOpacity
@@ -114,6 +114,7 @@ const InputModal = ({
               </TouchableOpacity>
 
               <Form
+                style = {styles.form}
                 initialValues={{ title: titleInput, description: descInput }}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
@@ -192,6 +193,17 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.9,
     alignItems: "center",
   },
+  webview : {
+    position: "absolute",
+    top : Dimensions.get("window").height * -0.3,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  form : {
+    alignContent: "center",
+    position: "absolute",
+    left: 500
+  }
 });
 
 export default InputModal;

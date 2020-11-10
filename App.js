@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UserContext from "./UserContext";
+
 import {
+  AppRegistry,
+  Text,
   Image,
   View,
   StyleSheet,
@@ -131,6 +134,7 @@ export default function App() {
             />
           ) : null}
           <UserInput
+            style = {styles.input}
             region={region}
             choosePin={choosePin}
             setChoosePin={setChoosePin}
@@ -150,11 +154,11 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.75,
+    height: Dimensions.get("window").height * 0.75
   },
   markerFixed: {
     left: Dimensions.get("window").width * 0.5 - 64,
     position: "absolute",
     top: Dimensions.get("window").height * 0.5 - 124,
-  },
+  }
 });

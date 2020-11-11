@@ -87,7 +87,7 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style = {styles.webview}>
       <Modal isVisible={signInVisible} avoidKeyboard={true}>
         <TouchableOpacity
           testID="close"
@@ -224,6 +224,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.9,
     alignItems: "center",
   },
+  webview: {
+    position: "absolute",
+    top: Dimensions.get("window").width * -0.4
+  }
 });
 
 export default SignInModal;

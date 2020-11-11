@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Image, SafeAreaView, Platform } from "react-native";
+import { Button, Image, SafeAreaView, Platform, TouchableOpacity, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import { OpenMapDirections } from "react-native-navigation-directions";
@@ -17,13 +17,16 @@ const Directions = ({lat, long}) => {
     };
 
     return(
-      <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
-        <Button
-          color="green"
-          title="Find directions"
-          onPress={callMaps}
-        />
+      <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
+        
+      <Button
+        color="green"
+        title="Find directions"
+        onPress={callMaps}
+      />
+
       </SafeAreaView>
+
     );
 
 };

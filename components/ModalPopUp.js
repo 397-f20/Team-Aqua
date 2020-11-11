@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     position: "absolute",
     bottom: 0,
-    borderRadius: 20,
+    borderRadius: 10,
     paddingTop: 15,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.5,
+    height: Dimensions.get("window").height * 0.49,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {

@@ -9,13 +9,23 @@ import {
   Platform,
 } from "react-native";
 import Directions from "./Directions";
+import Rate from "./Rate";
 import WebView from "react-native-webview";
+import RateModal from "./RateModal";
 
 const PinDetails = ({ pin }) => {
   const [imageVisible, setImageVisible] = useState(false);
+  const [rateVisible, setRateVisible] = useState(false);
 
   return (
     <ScrollView style={{ width: Dimensions.get("window").width * 0.9 }}>
+    {rateVisible ? (
+      <RateModal
+        rateVisible={rateVisible}
+        setRateVisible={setRateVisible}
+        pin={pin}
+      />
+    ) : null}
       <TouchableOpacity onPress={() => {}}>
         {Platform.OS !== "android" ? (
           <Image style={styles.image} source={{ uri: `${pin["uri"]}` }} />
@@ -29,6 +39,7 @@ const PinDetails = ({ pin }) => {
         <Text style={styles.resultText}> Uploaded By {pin["username"]} </Text>
       ) : null}
       <Directions lat={+pin["latitude"]} long={+pin["longitude"]} />
+      <Rate rateVisible={rateVisible} setRateVisible={setRateVisible} />
     </ScrollView>
   );
 };

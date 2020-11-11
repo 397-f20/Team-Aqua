@@ -102,6 +102,12 @@ const InputModal = ({
       uri: remoteUri,
       uid: currentUser.uid,
       username: currentUser.username,
+      ratings: [{rating: 5, 
+                description: "",
+                username: currentUser.username,
+                userID: currentUser.uid,
+                }
+      ],
     };
 
     firebase
@@ -111,6 +117,10 @@ const InputModal = ({
         error
           ? console.log("Error has occured during uploading this pin")
           : setFormVisible(false);
+      })
+      .then((snapshot) => {
+        console.log(snapshot.key)
+        firebase.database().ref("markers/" + snapshot.key).update({"id": snapshot.key})
       })
       .catch((error) => {
         setError(error.message);

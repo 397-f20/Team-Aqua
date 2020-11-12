@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   },
   webview: {
     position: "absolute",
-    top: Dimensions.get("window").width * -0.4
+    top: Dimensions.get("window").height * -0.6,
   }
 });
 

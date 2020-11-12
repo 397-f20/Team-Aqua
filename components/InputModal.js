@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   webview : {
     position: "absolute",
-    top : Dimensions.get("window").height * -0.3,
+    top : Dimensions.get("window").height * -0.6,
     alignItems: "center",
     justifyContent: "center"
   },

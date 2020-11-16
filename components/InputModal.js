@@ -83,11 +83,14 @@ const InputModal = ({
       uri: remoteUri,
       uid: currentUser.uid,
       username: currentUser.username,
-      ratings: [{rating: 5, 
-        description: "",
-        username: currentUser.username,
-        userID: currentUser.uid,
-        }
+      averageRating: 5,
+      ratings: [
+        {
+          rating: 5,
+          description: "",
+          username: currentUser.username,
+          userID: currentUser.uid,
+        },
       ],
     };
 
@@ -100,8 +103,10 @@ const InputModal = ({
           : setFormVisible(false);
       })
       .then((snapshot) => {
-        console.log(snapshot.key)
-        firebase.database().ref("markers/" + snapshot.key).update({"id": snapshot.key})
+        firebase
+          .database()
+          .ref("markers/" + snapshot.key)
+          .update({ id: snapshot.key });
       })
       .catch((error) => {
         setError(error.message);
@@ -112,7 +117,7 @@ const InputModal = ({
   return (
     <View>
       {!choosePin ? (
-        <SafeAreaView style = {styles.webview}>
+        <SafeAreaView style={styles.webview}>
           <Modal isVisible={formVisible} avoidKeyboard={true}>
             <View>
               <TouchableOpacity
@@ -123,7 +128,7 @@ const InputModal = ({
               </TouchableOpacity>
 
               <Form
-                style = {styles.form}
+                style={styles.form}
                 initialValues={{ title: titleInput, description: descInput }}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
@@ -202,17 +207,17 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.9,
     alignItems: "center",
   },
-  webview : {
+  webview: {
     position: "absolute",
-    top : Dimensions.get("window").height * -0.6,
+    top: Dimensions.get("window").height * -0.6,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
-  form : {
+  form: {
     alignContent: "center",
     position: "absolute",
-    left: 500
-  }
+    left: 500,
+  },
 });
 
 export default InputModal;

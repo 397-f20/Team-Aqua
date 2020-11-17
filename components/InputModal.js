@@ -15,7 +15,6 @@ import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
-import marker from "../assets/icons8-marker.png";
 
 const InputModal = ({
   formVisible,

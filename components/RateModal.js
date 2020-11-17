@@ -99,7 +99,7 @@ const RateModal = ({ rateVisible, setRateVisible, pin }) => {
               <RatingBar
                 defaultRating={defaultRating}
                 setDefaultRating={setDefaultRating}
-              ></RatingBar>
+              />
 
               <Form.Field
                 name="description"

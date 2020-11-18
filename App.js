@@ -66,28 +66,28 @@ export default function App() {
     };
   }, []);
 
-  //USE THIS TO UPDATE WHOLE DATABASE LATER ON!!!!!
-  // useEffect(() => {
-  //   Object.keys(pinData.markers).map((pinId) => {
-  //     firebase
-  //       .database()
-  //       .ref("markers/" + pinId)
-  //       .update({
-  //         averageRating: 5,
-  //         ratings: [
-  //           {
-  //             rating: 5,
-  //             description: "",
-  //             username: user.username,
-  //             userId: user.uid,
-  //           },
-  //         ],
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   });
-  // });
+ //USE THIS TO UPDATE WHOLE DATABASE LATER ON!!!!!
+   // useEffect(() => {
+   //   Object.keys(pinData.markers).map((pinId) => {
+   //     firebase
+   //       .database()
+   //       .ref("markers/" + pinId)
+   //       .update({
+   //         averageRating: 5,
+   //         ratings: [
+   //           {
+   //             rating: 5,
+   //             description: "",
+   //             username: user.username,
+   //             userId: user.uid,
+   //           },
+   //         ],
+   //       })
+   //       .catch((error) => {
+   //         console.log(error);
+   //       });
+   //   });
+   // });
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);

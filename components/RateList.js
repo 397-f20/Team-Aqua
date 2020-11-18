@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import RatingBar from "./RatingBar";
+import RatingBarList from "./RatingBarList";
 
 const RateList = ({ ratings }) => {
+  const [defaultRating, setDefaultRating] = useState(0);
   return (
     <View>
       {Object.keys(ratings).map((ratingId, i) => (
         <View style={styles.listItem} key={i}>
           <FontAwesome name="user-circle-o" size={40} color="grey" />
           <Text style={styles.userName}>{ratings[ratingId].username}</Text>
-          <Text style={styles.rating}>{ratings[ratingId].rating}</Text>
+          <RatingBarList
+                defaultRating={ratings[ratingId].rating}
+                setDefaultRating={setDefaultRating}
+              />
           {ratings[ratingId].description === "" ? null : (
             <Text style={styles.description}>
               {/* {"\n"} */}
@@ -23,12 +27,15 @@ const RateList = ({ ratings }) => {
   );
 };
 
+//<Text style={styles.rating}>{ratings[ratingId].rating} </Text>
+
+
 const styles = StyleSheet.create({
   listItem: {
     flex: 1,
     borderStyle: "solid",
-    flexDirection: "row",
-    borderColor: "#eee",
+    flexDirection: "column",
+    borderColor: "#bbb",
     // justifyContent: "center",
     alignItems: "center",
     padding: 15,
@@ -41,11 +48,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "left",
     marginTop: 5,
+    flexDirection: "column",
+    flex: 6,
   },
   rating: {
     marginLeft: 10,
     textAlign: "left",
     marginTop: 5,
+    flexDirection: "column",
+    flex: 6,
   },
   description: {
     marginLeft: 10,

@@ -11,7 +11,6 @@ import MapView, { Marker } from "react-native-maps";
 //import MapView, { Marker, PROVIDER_GOOGLE, MAP_TYPES } from "react-native-maps";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
-import dummy_pins from "./dummy_pins.json";
 import UserInput from "./components/UserInput";
 import { firebase } from "./firebase";
 import marker from "./assets/icons8-marker.png";
@@ -24,7 +23,7 @@ export default function App() {
   const [pinSelected, setPinSelected] = useState(null);
   const [caller, setCaller] = useState("");
   const [choosePin, setChoosePin] = useState(false);
-  const [pinData, setPinData] = useState(dummy_pins);
+  const [pinData, setPinData] = useState(null);
   const [region, setRegion] = useState({
     latitude: 42.047455,
     longitude: -87.680657,
@@ -123,7 +122,7 @@ export default function App() {
               setRegion(region);
             }}
           >
-            {Object.keys(pinData.markers).map((pin, i) => (
+            {pinData && Object.keys(pinData.markers).map((pin, i) => (
               <Marker
                 coordinate={{
                   latitude: +pinData.markers[pin].latitude,

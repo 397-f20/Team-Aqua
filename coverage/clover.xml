@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1606017338463" clover="3.2.0">
-  <project timestamp="1606017338463" name="All files">
-    <metrics statements="227" coveredstatements="103" conditionals="81" coveredconditionals="29" methods="83" coveredmethods="26" elements="391" coveredelements="158" complexity="0" loc="227" ncloc="227" packages="4" files="24" classes="24"/>
+<coverage generated="1606020875816" clover="3.2.0">
+  <project timestamp="1606020875816" name="All files">
+    <metrics statements="241" coveredstatements="111" conditionals="93" coveredconditionals="32" methods="85" coveredmethods="28" elements="419" coveredelements="171" complexity="0" loc="241" ncloc="241" packages="4" files="25" classes="25"/>
     <package name="Team-Aqua">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="UserContext.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/UserContext.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="5" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
       </file>
       <file name="firebase.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/firebase.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="16" count="5" type="cond" truecount="1" falsecount="1"/>
-        <line num="17" count="5" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="16" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="6" type="stmt"/>
       </file>
     </package>
     <package name="Team-Aqua.assets">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="icons8-marker.png" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/assets/icons8-marker.png">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
       </file>
     </package>
     <package name="Team-Aqua.components">
-      <metrics statements="199" coveredstatements="83" conditionals="66" coveredconditionals="19" methods="72" coveredmethods="20"/>
+      <metrics statements="213" coveredstatements="91" conditionals="78" coveredconditionals="22" methods="74" coveredmethods="22"/>
       <file name="Directions.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Directions.js">
         <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -36,10 +36,10 @@
       <file name="Form.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Form.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="8" count="6" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
-        <line num="13" count="5" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
       </file>
       <file name="InputModal.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/InputModal.js">
         <metrics statements="42" coveredstatements="13" conditionals="8" coveredconditionals="2" methods="16" coveredmethods="1"/>
@@ -86,50 +86,67 @@
         <line num="181" count="0" type="stmt"/>
         <line num="203" count="4" type="stmt"/>
       </file>
+      <file name="ModalPopUp.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/ModalPopUp.js">
+        <metrics statements="15" coveredstatements="2" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+      </file>
       <file name="PinDetails.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/PinDetails.js">
-        <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="1"/>
-        <line num="19" count="1" type="stmt"/>
+        <metrics statements="6" coveredstatements="6" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="19" count="2" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
       </file>
       <file name="PinList.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/PinList.js">
-        <metrics statements="14" coveredstatements="2" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <metrics statements="14" coveredstatements="9" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="2"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="77" count="1" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
       </file>
       <file name="Rate.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Rate.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
       </file>
       <file name="RateList.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/RateList.js">
         <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
       </file>
       <file name="RateModal.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/RateModal.js">
         <metrics statements="24" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="0"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
@@ -152,11 +169,11 @@
         <line num="80" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
         <line num="96" count="0" type="stmt"/>
-        <line num="124" count="1" type="stmt"/>
+        <line num="124" count="2" type="stmt"/>
       </file>
       <file name="RatingBar.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/RatingBar.js">
         <metrics statements="10" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
@@ -165,11 +182,11 @@
         <line num="37" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
       </file>
       <file name="RatingBarAvg.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/RatingBarAvg.js">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
         <line num="28" count="2" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
@@ -177,11 +194,11 @@
         <line num="34" count="3" type="stmt"/>
         <line num="37" count="15" type="stmt"/>
         <line num="52" count="2" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
       </file>
       <file name="RatingBarList.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/RatingBarList.js">
         <metrics statements="9" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
@@ -189,11 +206,11 @@
         <line num="34" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
       </file>
       <file name="SelectImage.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/SelectImage.js">
         <metrics statements="13" coveredstatements="8" conditionals="10" coveredconditionals="3" methods="4" coveredmethods="3"/>
-        <line num="14" count="5" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="cond" truecount="1" falsecount="1"/>
@@ -205,7 +222,7 @@
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="37" count="0" type="stmt"/>
         <line num="41" count="2" type="stmt"/>
-        <line num="57" count="5" type="stmt"/>
+        <line num="57" count="6" type="stmt"/>
       </file>
       <file name="SignInModal.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/SignInModal.js">
         <metrics statements="27" coveredstatements="10" conditionals="12" coveredconditionals="3" methods="11" coveredmethods="3"/>
@@ -278,14 +295,14 @@
         <line num="8" count="9" type="stmt"/>
         <line num="9" count="9" type="cond" truecount="1" falsecount="1"/>
         <line num="11" count="9" type="stmt"/>
-        <line num="21" count="5" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
       </file>
       <file name="FormErrorMessage.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormErrorMessage.js">
         <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="7" count="25" type="cond" truecount="4" falsecount="0"/>
         <line num="8" count="21" type="stmt"/>
         <line num="11" count="4" type="stmt"/>
-        <line num="14" count="5" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
       </file>
       <file name="FormField.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormField.js">
         <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
@@ -302,12 +319,12 @@
         <line num="10" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
       </file>
       <file name="FormTextInput.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/FormTextInput.js">
         <metrics statements="2" coveredstatements="2" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="14" count="20" type="stmt"/>
-        <line num="43" count="5" type="stmt"/>
+        <line num="43" count="6" type="stmt"/>
       </file>
       <file name="colors.js" path="/Users/daniellaasapokhai/Desktop/Team-Aqua/components/Forms/colors.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

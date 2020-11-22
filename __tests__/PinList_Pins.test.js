@@ -5,7 +5,6 @@ import { expect, it } from "@jest/globals";
 import PinList from "../components/PinList";
 import ModalPopUp from "../components/ModalPopUp";
 import renderer from "react-test-renderer";
-import dummy_pins from "../dummy_pins.json";
 import { PermissionsAndroid } from "react-native";
 
 //the modal component is automatically mocked by RN and apparently contains a bug which make the modal (and it's children) always visible in the test tree

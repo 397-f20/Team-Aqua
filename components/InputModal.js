@@ -28,15 +28,20 @@ const InputModal = ({
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState("");
-  const [titleInput, setTitleInput] = useState("Spot Title");
+  const [titleInput, setTitleInput] = useState("Spot title");
   const [descInput, setDescInput] = useState("description");
 
   // Store array of filePath, title, description
   const validationSchema = yup.object().shape({
-    title: yup.string().required().label("Title"),
+    title: yup
+      .string()
+      .required()
+      .notOneOf(["Spot title"], "Give your spot a title! Set location to update.")
+      .label("Title"),
     description: yup
       .string()
       .required()
+      .notOneOf(["description"], "Give your spot a description! Set location to update.")
       .max(200, "Must be less than 200 words")
       .label("Description"),
   });
@@ -156,10 +161,7 @@ const InputModal = ({
                   name="title"
                   leftIcon="map-search"
                   value={titleInput}
-                  onChangeText={(text) => {
-                    setTitleInput(text);
-                    console.log(titleInput);
-                  }}
+                  onChangeText={(text) => setTitleInput(text)}
                   // Load from useState
                 />
                 <Form.Field

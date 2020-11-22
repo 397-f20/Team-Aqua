@@ -83,7 +83,7 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
               {currentUser ? (
                 <Text style={{ color: "green" }}>Log Out</Text>
               ) : (
-                <Text style={{ color: "green" }}>Sign In</Text>
+                <Text testID="signInButton" style={{ color: "green" }}>Sign In</Text>
               )}
             </TouchableOpacity>
           </React.Fragment>

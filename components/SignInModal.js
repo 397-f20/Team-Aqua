@@ -106,7 +106,7 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
           </TouchableOpacity>
         ) :
           signIn ? (
-            <View>
+            <View testID="signInForm">
               <Form
                 initialValues={{
                   username: "",

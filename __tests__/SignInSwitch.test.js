@@ -12,14 +12,12 @@ jest.mock('react-native/Libraries/Modal/Modal', () => {
   return props=> <Modal {...props}/>
 })
 
-it('renders input modal correctly', async () => {
+it('can switch from sign in to sign up modal', async () => {
   const {getByText, getByTestId, debug} = render(<UserInput />)
 
-  expect(()=> getByText(/Add Your Spot/i)).toThrow(/no instances found/i) //modal is initially closed
+  fireEvent.press(getByTestId('signInButton'))
+  await waitFor(()=> getByText(/Or, Create an Account/i))
 
-  fireEvent.press(getByText(/Add a Spot/i))
-  await waitFor(()=> getByText(/Add Your Spot/i)) //modal is now visible
-
-  fireEvent.press(getByTestId('close'))
-  expect(()=> getByText(/Add Pin/i)).toThrow(/no instances found/i) //modal is closed again
+  fireEvent.press(getByText(/Or, Create an Account/i))
+  await waitFor(()=> getByText(/Or, Log In/i)) //modal is now visible
 });

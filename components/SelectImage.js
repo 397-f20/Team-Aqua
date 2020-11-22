@@ -47,7 +47,7 @@ const SelectImage = ({ image, setImage }) => {
         {image ? (
           <Text style={{ color: "white" }}>Change Image</Text>
         ) : (
-          <Text style={{ color: "white" }}>Choose an Image for Your Spot</Text>
+          <Text testID="chooseImage" style={{ color: "white" }}>Choose an Image for Your Spot</Text>
         )}
       </TouchableOpacity>
     </SafeAreaView>

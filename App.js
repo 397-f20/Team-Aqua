@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-//import MapView, { Marker, PROVIDER_GOOGLE, MAP_TYPES } from "react-native-maps";
 import { SearchBar } from "react-native-elements";
 import ModalPopUp from "./components/ModalPopUp";
 import UserInput from "./components/UserInput";
@@ -66,28 +65,28 @@ export default function App() {
     };
   }, []);
 
- //USE THIS TO UPDATE WHOLE DATABASE LATER ON!!!!!
-   // useEffect(() => {
-   //   Object.keys(pinData.markers).map((pinId) => {
-   //     firebase
-   //       .database()
-   //       .ref("markers/" + pinId)
-   //       .update({
-   //         averageRating: 5,
-   //         ratings: [
-   //           {
-   //             rating: 5,
-   //             description: "",
-   //             username: user.username,
-   //             userId: user.uid,
-   //           },
-   //         ],
-   //       })
-   //       .catch((error) => {
-   //         console.log(error);
-   //       });
-   //   });
-   // });
+  //USE THIS TO UPDATE WHOLE DATABASE LATER ON!!!!!
+  // useEffect(() => {
+  //   Object.keys(pinData.markers).map((pinId) => {
+  //     firebase
+  //       .database()
+  //       .ref("markers/" + pinId)
+  //       .update({
+  //         averageRating: 5,
+  //         ratings: [
+  //           {
+  //             rating: 5,
+  //             description: "",
+  //             username: user.username,
+  //             userId: user.uid,
+  //           },
+  //         ],
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   });
+  // });
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -122,25 +121,26 @@ export default function App() {
               setRegion(region);
             }}
           >
-            {pinData && Object.keys(pinData.markers).map((pin, i) => (
-              <Marker
-                coordinate={{
-                  latitude: +pinData.markers[pin].latitude,
-                  longitude: +pinData.markers[pin].longitude,
-                }}
-                onPress={() => {
-                  setCaller("marker");
-                  setPinSelected({ pin });
-                  setModalVisible(!modalVisible);
-                }}
-                identifier={pin}
-                key={i}
-              />
-            ))}
+            {pinData &&
+              Object.keys(pinData.markers).map((pin, i) => (
+                <Marker
+                  coordinate={{
+                    latitude: +pinData.markers[pin].latitude,
+                    longitude: +pinData.markers[pin].longitude,
+                  }}
+                  onPress={() => {
+                    setCaller("marker");
+                    setPinSelected({ pin });
+                    setModalVisible(!modalVisible);
+                  }}
+                  identifier={pin}
+                  key={i}
+                />
+              ))}
           </MapView>
           {choosePin && (
             <View style={styles.markerFixed}>
-              <Image style={styles.marker} source={marker} />
+              <Image source={marker} />
             </View>
           )}
           {modalVisible ? (
@@ -153,7 +153,6 @@ export default function App() {
             />
           ) : null}
           <UserInput
-            style={styles.input}
             region={region}
             choosePin={choosePin}
             setChoosePin={setChoosePin}

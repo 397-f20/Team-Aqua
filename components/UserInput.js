@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as Location from "expo-location";
-import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import InputModal from "./InputModal";
 import SignInModal from "./SignInModal";
@@ -43,7 +42,6 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
           formVisible={formVisible}
           setFormVisible={setFormVisible}
           location={location}
-          region={region}
           choosePin={choosePin}
           setChoosePin={setChoosePin}
         />
@@ -65,7 +63,7 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
                 <Ionicons name="ios-add" size={45} color="green" />
                 <Text style={{ color: "green" }}>Add a Spot</Text>
               </TouchableOpacity>
-            ) :
+            ) : (
               <TouchableOpacity
                 onPress={() => setSignInVisible(true)}
                 style={{ flex: 1, alignItems: "center" }}
@@ -73,7 +71,7 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
                 <Ionicons name="ios-add" size={45} color="gray" />
                 <Text style={{ color: "gray" }}>Sign In to Add a Spot</Text>
               </TouchableOpacity>
-            }
+            )}
 
             <TouchableOpacity
               onPress={() => setSignInVisible(true)}
@@ -83,7 +81,9 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
               {currentUser ? (
                 <Text style={{ color: "green" }}>Log Out</Text>
               ) : (
-                <Text testID="signInButton" style={{ color: "green" }}>Sign In</Text>
+                <Text testID="signInButton" style={{ color: "green" }}>
+                  Sign In
+                </Text>
               )}
             </TouchableOpacity>
           </React.Fragment>

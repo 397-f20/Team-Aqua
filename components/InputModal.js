@@ -20,7 +20,6 @@ const InputModal = ({
   formVisible,
   setFormVisible,
   location,
-  region,
   choosePin,
   setChoosePin,
 }) => {
@@ -36,12 +35,18 @@ const InputModal = ({
     title: yup
       .string()
       .required()
-      .notOneOf(["Spot title"], "Give your spot a title! Set location to update.")
+      .notOneOf(
+        ["Spot title"],
+        "Give your spot a title! Set location to update."
+      )
       .label("Title"),
     description: yup
       .string()
       .required()
-      .notOneOf(["description"], "Give your spot a description! Set location to update.")
+      .notOneOf(
+        ["description"],
+        "Give your spot a description! Set location to update."
+      )
       .max(200, "Must be less than 200 words")
       .label("Description"),
   });

@@ -9,7 +9,6 @@ import {
   Dimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
 
 const SelectImage = ({ image, setImage }) => {
   useEffect(() => {
@@ -47,7 +46,9 @@ const SelectImage = ({ image, setImage }) => {
         {image ? (
           <Text style={{ color: "white" }}>Change Image</Text>
         ) : (
-          <Text testID="chooseImage" style={{ color: "white" }}>Choose an Image for Your Spot</Text>
+          <Text testID="chooseImage" style={{ color: "white" }}>
+            Choose an Image for Your Spot
+          </Text>
         )}
       </TouchableOpacity>
     </SafeAreaView>

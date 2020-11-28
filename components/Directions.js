@@ -1,34 +1,25 @@
-import React, { useEffect } from "react";
-import { Button, Image, SafeAreaView, Platform, TouchableOpacity, Text } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
+import React from "react";
+import { Button, SafeAreaView } from "react-native";
 import { OpenMapDirections } from "react-native-navigation-directions";
 
-const Directions = ({lat, long}) => {
-
-    const callMaps= () => {
-        const endPoint = {
-            longitude: long,
-            latitude: lat
-        }
-        const transportPlan = 'd';
-
-        OpenMapDirections(null, endPoint,transportPlan).then(res => {console.log(res)})
+const Directions = ({ lat, long }) => {
+  const callMaps = () => {
+    const endPoint = {
+      longitude: long,
+      latitude: lat,
     };
+    const transportPlan = "d";
 
-    return(
-      <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
-        
-      <Button
-        color="green"
-        title="Find directions"
-        onPress={callMaps}
-      />
+    OpenMapDirections(null, endPoint, transportPlan).then((res) => {
+      console.log(res);
+    });
+  };
 
-      </SafeAreaView>
-
-    );
-
+  return (
+    <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
+      <Button color="green" title="Find directions" onPress={callMaps} />
+    </SafeAreaView>
+  );
 };
 
 export default Directions;

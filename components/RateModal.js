@@ -1,22 +1,16 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../UserContext";
-import SelectImage from "./SelectImage";
-import PinDetails from "./PinDetails";
 import {
-  StyleSheet,
   SafeAreaView,
   View,
-  Text,
   TouchableOpacity,
   buttonState,
-  Dimensions,
 } from "react-native";
 import { firebase } from "../firebase";
 import { Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import Form from "./Form";
 import * as yup from "yup";
-import marker from "../assets/icons8-marker.png";
 import RatingBar from "./RatingBar";
 
 const RateModal = ({ rateVisible, setRateVisible, pin }) => {
@@ -32,10 +26,6 @@ const RateModal = ({ rateVisible, setRateVisible, pin }) => {
       .label("Description"),
   });
 
-  const generateUniqueId = () => {
-    return `${Math.random().toString(36).substr(2, 9)}`;
-  };
-
   const calculateAverage = (rating) => {
     const currentLen = Object.keys(pin["ratings"]).length;
     return (currentLen * pin["averageRating"] + rating) / (currentLen + 1);
@@ -45,8 +35,6 @@ const RateModal = ({ rateVisible, setRateVisible, pin }) => {
     setRateVisible(false);
 
     const { description } = values;
-
-    // const id = generateUniqueId();
 
     const rating = {
       rating: defaultRating,
@@ -120,15 +108,5 @@ const RateModal = ({ rateVisible, setRateVisible, pin }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "green",
-    padding: 15,
-    borderRadius: 25,
-    width: Dimensions.get("window").width * 0.9,
-    alignItems: "center",
-  },
-});
 
 export default RateModal;

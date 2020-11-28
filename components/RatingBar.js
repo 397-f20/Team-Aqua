@@ -1,10 +1,4 @@
-// React Native Custom Star Rating Bar
-// https://aboutreact.com/react-native-custom-star-rating-bar/
-
-// import React in our code
-import React, { useState } from 'react';
-import RateModal from './RateModal';
-// import all the components we are going to use
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,23 +6,17 @@ import {
   Text,
   Image,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-const RatingBar = ( {
-    defaultRating, 
-    setDefaultRating,
-}
-) => {
-  // To set the default Star Selected
-  // To set the max number of Stars
+const RatingBar = ({ defaultRating, setDefaultRating }) => {
   const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
 
   // Filled Star. You can also give the path from local
   const starImageFilled =
-    'https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_filled.png';
+    "https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_filled.png";
   // Empty Star. You can also give the path from local
   const starImageCorner =
-    'https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_corner.png';
+    "https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_corner.png";
 
   const CustomRatingBar = () => {
     return (
@@ -38,7 +26,8 @@ const RatingBar = ( {
             <TouchableOpacity
               activeOpacity={0.7}
               key={item}
-              onPress={() => setDefaultRating(item)}>
+              onPress={() => setDefaultRating(item)}
+            >
               <Image
                 style={styles.starImageStyle}
                 source={
@@ -57,14 +46,12 @@ const RatingBar = ( {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        
         {/*View to hold our Stars*/}
         <CustomRatingBar />
         <Text style={styles.textStyle}>
           {/*To show the rating selected*/}
           {defaultRating} / {Math.max.apply(null, maxRating)}
         </Text>
-        
       </View>
     </SafeAreaView>
   );
@@ -78,46 +65,46 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     marginBottom: 40,
-    justifyContent: 'center',
-    textAlign: 'center',
+    justifyContent: "center",
+    textAlign: "center",
   },
   titleText: {
     padding: 8,
     fontSize: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   textStyle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 23,
-    color: '#000',
+    color: "#000",
     marginTop: 15,
   },
   textStyleSmall: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 16,
-    color: '#000',
+    color: "#000",
     marginTop: 15,
   },
   buttonStyle: {
-    justifyContent: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    flexDirection: "row",
     marginTop: 30,
     padding: 15,
-    backgroundColor: '#8ad24e',
+    backgroundColor: "#8ad24e",
   },
   buttonTextStyle: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
   },
   customRatingBarStyle: {
-    justifyContent: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    flexDirection: "row",
     marginTop: 30,
   },
   starImageStyle: {
     width: 40,
     height: 40,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });

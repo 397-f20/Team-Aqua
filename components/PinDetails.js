@@ -17,7 +17,6 @@ import RateList from "./RateList";
 import RatingBarAvg from "./RatingBarAvg";
 
 const PinDetails = ({ pin }) => {
-  const [imageVisible, setImageVisible] = useState(false);
   const [rateVisible, setRateVisible] = useState(false);
   const [defaultRating, setDefaultRating] = useState(0);
 
@@ -40,9 +39,9 @@ const PinDetails = ({ pin }) => {
       <View style={styles.titlerate}>
         <Text style={styles.resultTitle}>{pin["title"]}</Text>
         <RatingBarAvg
-                  defaultRating={Math.round(pin["averageRating"])}
-                  setDefaultRating={setDefaultRating}
-                />
+          defaultRating={Math.round(pin["averageRating"])}
+          setDefaultRating={setDefaultRating}
+        />
       </View>
       <Text style={styles.resultText}>{pin["description"]}</Text>
       {pin["username"] ? (

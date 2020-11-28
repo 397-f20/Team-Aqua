@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Modal,
-  TouchableHighlight,
   Dimensions,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import PinDetails from "./PinDetails";
 import PinList from "./PinList";

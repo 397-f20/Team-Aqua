@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import RatingBarList from "./RatingBarList";
 
@@ -12,9 +12,9 @@ const RateList = ({ ratings }) => {
           <FontAwesome name="user-circle-o" size={40} color="grey" />
           <Text style={styles.userName}>{ratings[ratingId].username}</Text>
           <RatingBarList
-                defaultRating={ratings[ratingId].rating}
-                setDefaultRating={setDefaultRating}
-              />
+            defaultRating={ratings[ratingId].rating}
+            setDefaultRating={setDefaultRating}
+          />
           {ratings[ratingId].description === "" ? null : (
             <Text style={styles.description}>
               {/* {"\n"} */}
@@ -27,19 +27,14 @@ const RateList = ({ ratings }) => {
   );
 };
 
-//<Text style={styles.rating}>{ratings[ratingId].rating} </Text>
-
-
 const styles = StyleSheet.create({
   listItem: {
     flex: 1,
     borderStyle: "solid",
     flexDirection: "column",
     borderColor: "#bbb",
-    // justifyContent: "center",
     alignItems: "center",
     padding: 15,
-    borderBottomWidth: 2,
     borderTopWidth: 2,
   },
   userName: {

@@ -14,12 +14,16 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== "granted") {
-        console.log("user is dumb");
-      }
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      try {
+        let { status } = await Location.requestPermissionsAsync();
+        if (status !== "granted") {
+          console.log("user is dumb");
+        }
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+     }  catch(err){
+        console.log(err);
+     }
     })();
   }, []);
 

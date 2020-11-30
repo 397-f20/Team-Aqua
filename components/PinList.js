@@ -11,6 +11,7 @@ import {
 import WebView from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
 import PinDetails from "./PinDetails";
+import RatingBarAvg from "./RatingBarAvg";
 
 const PinList = ({ pins }) => {
   const [listActive, setListActive] = useState(true);
@@ -38,6 +39,13 @@ const PinList = ({ pins }) => {
               )}
               <View style={{ flex: 3 }}>
                 <Text style={styles.resultTitle}>{pin["title"]}</Text>
+                <View style={{flex: 1,
+                              alignItems: "flex-start",}}>
+                  <RatingBarAvg
+                    defaultRating={Math.round(pin["averageRating"])}
+                    setDefaultRating= {null}
+                  />
+                  </View>
                 <Text style={styles.resultText}>{pin["description"]}</Text>
               </View>
             </TouchableOpacity>

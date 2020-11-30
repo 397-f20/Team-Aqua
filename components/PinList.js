@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").height * 0.1,
     flex: 1,
     borderRadius: 10,
+    marginRight: 10
   },
   resultTitle: {
     fontWeight: "bold",

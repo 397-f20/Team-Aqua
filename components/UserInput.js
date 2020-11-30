@@ -16,9 +16,6 @@ const UserInput = ({ region, choosePin, setChoosePin }) => {
     (async () => {
       try {
         let { status } = await Location.requestPermissionsAsync();
-        if (status !== "granted") {
-          console.log("user is dumb");
-        }
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
      }  catch(err){

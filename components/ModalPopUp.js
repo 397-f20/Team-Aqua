@@ -36,10 +36,10 @@ const ModalPopUp = ({
     for (item in pinData["markers"]) {
       if (
         pinData["markers"][item]["title"]
-          .toLowerCase()
+          .toString().toLowerCase()
           .includes(pin.toLowerCase()) ||
         pinData["markers"][item]["description"]
-          .toLowerCase()
+          .toString().toLowerCase()
           .includes(pin.toLowerCase())
       ) {
         res.push(pinData["markers"][item]);

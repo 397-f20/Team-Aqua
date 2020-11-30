@@ -121,6 +121,7 @@ const SignInModal = ({ signInVisible, setSignInVisible }) => {
                 leftIcon="email"
                 placeholder="Enter Email"
                 autoCapitalize="none"
+                secureTextEntry={false}
                 keyboardType="email-address"
                 textContentType="emailAddress"
               />

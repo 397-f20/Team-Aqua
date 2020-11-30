@@ -105,11 +105,17 @@ export default function App() {
         <SafeAreaView>
           <SearchBar
             platform="default"
-            placeholder="Look up your favourite spots..."
+            placeholder="Look up your favorite spots..."
             onChangeText={onChangeSearch}
             value={searchQuery}
             onSubmitEditing={onSearchButtonPress}
             lightTheme={true}
+            containerStyle={{
+              backgroundColor: "white",
+              borderTopWidth: "0",
+              paddingBottom: 1,
+              paddingHorizontal: 1,
+            }}
           />
           <MapView
             provider="google"
